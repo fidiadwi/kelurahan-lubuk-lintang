@@ -1,0 +1,265 @@
+.laporan-stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.laporan-card{
+    background:#fff;
+    padding:25px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    box-shadow:0 3px 10px rgba(0,0,0,.05);
+}
+
+.laporan-card i{
+    font-size:30px;
+    color:#0B2E63;
+}
+
+.laporan-card span{
+    font-size:14px;
+    color:#64748b;
+}
+
+.laporan-card h3{
+    font-size:32px;
+    color:#0B2E63;
+}
+
+/* =========================
+TABLE
+========================= */
+
+.table-card{
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 3px 10px rgba(0,0,0,.05);
+}
+
+.table-header{
+    margin-bottom:20px;
+}
+
+.table-header h3{
+    color:#0B2E63;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th{
+    background:#f8fafc;
+    padding:15px;
+    text-align:left;
+    color:#334155;
+    font-weight:600;
+}
+
+table td{
+    padding:15px;
+    border-bottom:1px solid #e5e7eb;
+}
+
+table tr:hover{
+    background:#fafafa;
+}
+
+/* =========================
+BADGE
+========================= */
+
+.badge{
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.badge-baru{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+.badge-dibaca{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+.badge-dibalas{
+    background:#dbeafe;
+    color:#2563eb;
+}
+
+/* =========================
+AKSI
+========================= */
+
+.action-buttons{
+    display:flex;
+    gap:8px;
+}
+
+.btn-detail,
+.btn-read{
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.btn-detail{
+    background:#0B2E63;
+    color:white;
+}
+
+.btn-read{
+    background:#22c55e;
+    color:white;
+}
+
+.btn-detail:hover,
+.btn-read:hover{
+    opacity:.9;
+}
+
+/* =========================
+DETAIL PESAN
+========================= */
+
+.detail-row td{
+    background:#f8fafc;
+}
+
+.detail-box{
+    padding:20px;
+}
+
+.detail-box h4{
+    color:#0B2E63;
+    margin-bottom:15px;
+}
+
+.detail-box p{
+    margin-bottom:10px;
+}
+
+.pesan-box{
+    background:white;
+    border:1px solid #e5e7eb;
+    padding:15px;
+    border-radius:10px;
+    margin-top:10px;
+    margin-bottom:15px;
+}
+
+.balasan-box{
+    background:#ecfeff;
+    border-left:4px solid #06b6d4;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.balasan-box strong{
+    display:block;
+    margin-bottom:8px;
+}
+
+/* =========================
+FORM BALASAN
+========================= */
+
+.detail-box label{
+    font-weight:600;
+    display:block;
+    margin-bottom:10px;
+}
+
+.detail-box textarea{
+    width:100%;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    padding:12px;
+    resize:none;
+}
+
+.btn-wa{
+    margin-top:15px;
+    background:#22c55e;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.btn-delete{
+    margin-top:10px;
+    background:#ef4444;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.btn-wa:hover,
+.btn-delete:hover{
+    opacity:.9;
+}
+
+/* =========================
+EMPTY
+========================= */
+
+.empty-row{
+    text-align:center;
+    color:#94a3b8;
+    padding:25px;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    .laporan-stats{
+        grid-template-columns:1fr;
+    }
+
+    table{
+        font-size:13px;
+    }
+
+}
+
+.alert-success{
+    background:#dcfce7;
+    color:#15803d;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+.alert-error{
+    background:#fee2e2;
+    color:#dc2626;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:20px;
+}

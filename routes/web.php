@@ -8,7 +8,39 @@ Route::get('/', function () {
     return redirect('/admin/dashboard');
 });
 
-Route::get('/admin/dashboard', [DashboardController::class, 'index']);
+/*
+|--------------------------------------------------------------------------
+| Dashboard
+|--------------------------------------------------------------------------
+*/
 
-Route::get('/admin/laporan', [LaporanController::class, 'index'])
-    ->name('admin.laporan');
+Route::get(
+    '/admin/dashboard',
+    [DashboardController::class, 'index']
+)->name('admin.dashboard');
+
+/*
+|--------------------------------------------------------------------------
+| Laporan & Pesan
+|--------------------------------------------------------------------------
+*/
+
+Route::get(
+    '/admin/laporan',
+    [LaporanController::class, 'index']
+)->name('admin.laporan');
+
+Route::post(
+    '/admin/laporan/{id}/balas',
+    [LaporanController::class, 'balas']
+)->name('admin.laporan.balas');
+
+Route::get(
+    '/admin/laporan/{id}/dibaca',
+    [LaporanController::class, 'dibaca']
+)->name('admin.laporan.dibaca');
+
+Route::delete(
+    '/admin/laporan/{id}',
+    [LaporanController::class, 'destroy']
+)->name('admin.laporan.destroy');

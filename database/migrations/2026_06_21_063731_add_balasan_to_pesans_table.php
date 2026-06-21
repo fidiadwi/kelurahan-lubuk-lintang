@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::table('pesans', function (Blueprint $table) {
+
+            $table->text('balasan')->nullable();
+
+            $table->enum('status',[
+                'baru',
+                'dibaca',
+                'dibalas'
+            ])->default('baru')->change();
+
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('pesans', function (Blueprint $table) {
+
+            $table->dropColumn('balasan');
+
+        });
+    }
+};

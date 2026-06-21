@@ -3,35 +3,43 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Admin Kelurahan</title>
+    <title>
+        @yield('title', 'Admin Kelurahan')
+    </title>
 
-<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-<link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    {{-- CSS GLOBAL --}}
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+
+    {{-- CSS PER HALAMAN --}}
+    @yield('styles')
+
+    {{-- BOOTSTRAP ICON --}}
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 </head>
 
 <body>
 
-@include('admin.layouts.sidebar')
+    @include('admin.layouts.sidebar')
 
-<div class="main-content">
+    <div class="main-content">
 
-    @include('admin.layouts.navbar')
+        @include('admin.layouts.navbar')
 
-    <div class="content">
+        <div class="content">
 
-        @yield('content')
+            @yield('content')
+
+        </div>
 
     </div>
 
-</div>
-
-<script src="{{ asset('js/sidebar.js') }}"></script>
+    <script src="{{ asset('js/sidebar.js') }}"></script>
 
 </body>
 
