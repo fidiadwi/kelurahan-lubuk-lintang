@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\ProfilController;
+use App\Http\Controllers\Admin\PerangkatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,5 +102,31 @@ Route::middleware('auth')->group(function(){
         '/admin/profil/update',
         [ProfilController::class,'update']
     )->name('admin.profil.update');
+
+        /*
+    |--------------------------------------------------------------------------
+    | Perangkat Kelurahan
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get(
+        '/admin/perangkat',
+        [PerangkatController::class,'index']
+    )->name('admin.perangkat');
+
+    Route::post(
+        '/admin/perangkat',
+        [PerangkatController::class,'store']
+    )->name('admin.perangkat.store');
+
+    Route::delete(
+        '/admin/perangkat/{id}',
+        [PerangkatController::class,'destroy']
+    )->name('admin.perangkat.destroy');
+
+    Route::put(
+        '/admin/perangkat/{id}',
+        [PerangkatController::class,'update']
+    )->name('admin.perangkat.update');
 
 });

@@ -33,6 +33,12 @@
             <span>Profil Kelurahan</span>
         </a>
 
+        <a href="{{ route('admin.perangkat') }}"
+        class="menu-item {{ request()->is('admin/perangkat') ? 'active' : '' }}">
+            <i class="bi bi-people"></i>
+            <span>Perangkat Kelurahan</span>
+        </a>
+
         <a href="/admin/galeri"
         class="menu-item">
             <i class="bi bi-images"></i>

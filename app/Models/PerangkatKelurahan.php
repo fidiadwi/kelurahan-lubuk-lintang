@@ -9,9 +9,11 @@ class PerangkatKelurahan extends Model
     protected $table = 'perangkat_kelurahan';
 
     protected $fillable = [
+
         'nama',
         'jabatan',
         'foto',
         'urutan'
+
     ];
 }
