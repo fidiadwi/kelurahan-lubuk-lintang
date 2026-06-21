@@ -1,0 +1,13 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root{
+    --sidebar:#0F172A;
+    --primary:#1E3A8A;
+    --background:#F8FAFC;
+    --white:#FFFFFF;
+}
+
+body{
+    background:red !important;
+    font-family:'Segoe UI',sans-serif;
+}
