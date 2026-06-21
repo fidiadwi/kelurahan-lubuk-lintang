@@ -1,50 +1,128 @@
 @extends('admin.layouts.app')
 
+@section('title','Dashboard')
+
 @section('content')
 
-<div class="dashboard-header">
+<div class="welcome-banner">
 
-    <h1>Ringkasan Dashboard</h1>
+    <div class="welcome-content">
 
-    <p>
-        Selamat datang kembali, Admin.
-    </p>
+        <span class="welcome-badge">
+            Sistem Informasi Kelurahan Lubuk Lintang
+        </span>
+
+        <h2>
+            Selamat Datang, Admin 👋
+        </h2>
+
+        <p>
+            Kelola profil kelurahan, data perangkat, galeri dokumentasi,
+            dan pesan masyarakat dalam satu dashboard terintegrasi.
+        </p>
+
+    </div>
+
+    <div class="welcome-image">
+
+        <img src="{{ asset('images/kantor-kelurahan.jpg') }}"
+             alt="Kantor Kelurahan">
+
+    </div>
 
 </div>
 
 <div class="stats-grid">
 
     <div class="stat-card blue">
-        <span>TOTAL ASPIRASI</span>
-        <h2>124</h2>
-    </div>
 
-    <div class="stat-card red">
-        <span>MENUNGGU</span>
-        <h2>12</h2>
-    </div>
+        <div class="stat-header">
 
-    <div class="stat-card yellow">
-        <span>DIPROSES</span>
-        <h2>45</h2>
+            <div class="stat-icon blue-bg">
+                <i class="bi bi-envelope-paper"></i>
+            </div>
+
+            <div>
+                <span>Total Pesan</span>
+                <h2>{{ $totalPesan }}</h2>
+            </div>
+
+        </div>
+
+        <small>Pesan masuk dari masyarakat</small>
+
     </div>
 
     <div class="stat-card green">
-        <span>SELESAI</span>
-        <h2>67</h2>
+
+        <div class="stat-header">
+
+            <div class="stat-icon green-bg">
+                <i class="bi bi-images"></i>
+            </div>
+
+            <div>
+                <span>Total Galeri</span>
+                <h2>{{ $totalGaleri }}</h2>
+            </div>
+
+        </div>
+
+        <small>Dokumentasi kegiatan</small>
+
+    </div>
+
+    <div class="stat-card yellow">
+
+        <div class="stat-header">
+
+            <div class="stat-icon yellow-bg">
+                <i class="bi bi-people"></i>
+            </div>
+
+            <div>
+                <span>Total Perangkat</span>
+                <h2>{{ $totalPerangkat }}</h2>
+            </div>
+
+        </div>
+
+        <small>Perangkat Kelurahan</small>
+
+    </div>
+
+    <div class="stat-card purple">
+
+        <div class="stat-header">
+
+            <div class="stat-icon purple-bg">
+                <i class="bi bi-building"></i>
+            </div>
+
+            <div>
+                <span>Profil Kelurahan</span>
+                <h2>{{ $totalProfil }}</h2>
+            </div>
+
+        </div>
+
+        <small>Data profil tersedia</small>
+
     </div>
 
 </div>
 
 <div class="dashboard-grid">
 
-    <div class="aspirasi-box">
+    <div class="table-card">
 
-        <div class="box-header">
+        <div class="table-header">
 
-            <h3>Aspirasi Warga Terbaru</h3>
+            <h3>Pesan Terbaru</h3>
 
-            <a href="#">Lihat Semua</a>
+            <a href="{{ route('admin.laporan') }}">
+                Lihat Semua
+            </a>
 
         </div>
 
@@ -53,48 +131,46 @@
             <thead>
 
                 <tr>
+                    <th>Nama</th>
+                    <th>No HP</th>
+                    <th>Subjek</th>
                     <th>Tanggal</th>
-                    <th>Warga</th>
-                    <th>Topik</th>
-                    <th>Status</th>
                 </tr>
 
             </thead>
 
             <tbody>
 
-                <tr>
-                    <td>24 Okt 2024</td>
-                    <td>Anwar Subagjo</td>
-                    <td>Lampu Jalan Mati</td>
-                    <td>
-                        <span class="badge pending">
-                            Pending
-                        </span>
-                    </td>
-                </tr>
+                @forelse($pesanTerbaru as $pesan)
 
                 <tr>
-                    <td>23 Okt 2024</td>
-                    <td>Siti Aminah</td>
-                    <td>Perbaikan Drainase</td>
+
+                    <td>{{ $pesan->nama }}</td>
+
+                    <td>{{ $pesan->no_hp }}</td>
+
+                    <td>{{ $pesan->subjek }}</td>
+
                     <td>
-                        <span class="badge selesai">
-                            Selesai
-                        </span>
+                        {{ $pesan->created_at->format('d M Y') }}
                     </td>
+
                 </tr>
 
+                @empty
+
                 <tr>
-                    <td>22 Okt 2024</td>
-                    <td>Bambang Irawan</td>
-                    <td>Pembersihan Selokan</td>
-                    <td>
-                        <span class="badge proses">
-                            Diproses
-                        </span>
+
+                    <td colspan="4" class="empty-row">
+
+                        <i class="bi bi-envelope"></i><br>
+                        Belum ada pesan masuk
+
                     </td>
+
                 </tr>
+
+                @endforelse
 
             </tbody>
 
@@ -102,55 +178,81 @@
 
     </div>
 
-    <div class="right-panel">
+    <div class="quick-menu">
 
-        <div class="berita-box">
+        <h3>Quick Menu</h3>
 
-            <h3>Berita & Pengumuman</h3>
+        <a href="/admin/profil" class="quick-item">
 
-            <div class="berita-item">
+            <div class="quick-left">
 
-                <strong>
-                    Gotong Royong Kebersihan Lingkungan
-                </strong>
+                <div class="stat-icon blue-bg">
+                    <i class="bi bi-building"></i>
+                </div>
 
-                <small>
-                    20 Okt 2024
-                </small>
+                <div>
 
-            </div>
+                    <strong>Profil Kelurahan</strong>
 
-            <div class="berita-item">
+                    <small>
+                        Edit informasi kelurahan
+                    </small>
 
-                <strong>
-                    Jadwal Pelayanan Akta Kelahiran
-                </strong>
-
-                <small>
-                    18 Okt 2024
-                </small>
+                </div>
 
             </div>
 
-        </div>
+            <i class="bi bi-chevron-right quick-arrow"></i>
 
-        <div class="profil-box">
+        </a>
 
-            <h3>Profil Kelurahan</h3>
+        <a href="/admin/galeri" class="quick-item">
 
-            <p>
+            <div class="quick-left">
 
-                Pastikan data profil, visi misi
-                dan sejarah kelurahan selalu
-                diperbarui.
+                <div class="stat-icon green-bg">
+                    <i class="bi bi-images"></i>
+                </div>
 
-            </p>
+                <div>
 
-            <button>
-                Kelola Profil
-            </button>
+                    <strong>Galeri Dokumentasi</strong>
 
-        </div>
+                    <small>
+                        Kelola dokumentasi kegiatan
+                    </small>
+
+                </div>
+
+            </div>
+
+            <i class="bi bi-chevron-right quick-arrow"></i>
+
+        </a>
+
+        <a href="/admin/laporan" class="quick-item">
+
+            <div class="quick-left">
+
+                <div class="stat-icon yellow-bg">
+                    <i class="bi bi-envelope-paper"></i>
+                </div>
+
+                <div>
+
+                    <strong>Laporan & Pesan</strong>
+
+                    <small>
+                        Pesan dari masyarakat
+                    </small>
+
+                </div>
+
+            </div>
+
+            <i class="bi bi-chevron-right quick-arrow"></i>
+
+        </a>
 
     </div>
 

@@ -15,39 +15,28 @@
 
     <div class="menu">
 
-        <a href="#" class="menu-item active">
+        <a href="{{ url('/admin/dashboard') }}"
+        class="menu-item {{ request()->is('admin/dashboard') ? 'active' : '' }}">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
         </a>
 
-        <a href="#" class="menu-item">
-            <i class="bi bi-chat-left-text"></i>
-            <span>Aspirasi Masyarakat</span>
+        <a href="{{ route('admin.laporan') }}"
+        class="menu-item {{ request()->is('admin/laporan') ? 'active' : '' }}">
+            <i class="bi bi-envelope-paper"></i>
+            <span>Laporan & Pesan</span>
         </a>
 
-        <a href="#" class="menu-item">
+        <a href="/admin/profil"
+        class="menu-item">
             <i class="bi bi-building"></i>
             <span>Profil Kelurahan</span>
         </a>
 
-        <a href="#" class="menu-item">
-            <i class="bi bi-bar-chart"></i>
-            <span>Potensi Kelurahan</span>
-        </a>
-
-        <a href="#" class="menu-item">
+        <a href="/admin/galeri"
+        class="menu-item">
             <i class="bi bi-images"></i>
             <span>Galeri Dokumentasi</span>
-        </a>
-
-        <a href="#" class="menu-item">
-            <i class="bi bi-telephone"></i>
-            <span>Kontak Kelurahan</span>
-        </a>
-
-        <a href="#" class="menu-item">
-            <i class="bi bi-gear"></i>
-            <span>Pengaturan</span>
         </a>
 
     </div>
@@ -55,11 +44,8 @@
     <div class="sidebar-footer">
 
         <a href="#" class="logout-btn">
-
             <i class="bi bi-box-arrow-right"></i>
-
             <span>Logout</span>
-
         </a>
 
     </div>

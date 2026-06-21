@@ -1,24 +1,45 @@
 <div class="navbar">
 
-    <button id="toggleSidebar" class="toggle-btn">
+    <div class="navbar-left">
 
-        <i class="bi bi-list"></i>
+        <button id="toggleSidebar" class="toggle-btn">
+            <i class="bi bi-list"></i>
+        </button>
 
-    </button>
+        <h2 class="page-title">
+            @yield('title')
+        </h2>
+
+    </div>
 
     <div class="navbar-right">
 
+        <div class="notif-box">
+
+            <i class="bi bi-bell"></i>
+
+            @if(isset($notifCount) && $notifCount > 0)
+                <span>{{ $notifCount }}</span>
+            @endif
+
+        </div>
+
         <div class="date-box">
 
-            <h4>Kamis, 24 Oktober 2024</h4>
+            <h4>
+                {{ now()->locale('id')->translatedFormat('l, d F Y') }}
+            </h4>
 
-            <p>Admin: Adelia</p>
+            <p>
+                Admin :
+                {{ auth()->user()->name ?? 'Administrator' }}
+            </p>
 
         </div>
 
         <div class="avatar">
 
-            A
+            {{ strtoupper(substr(auth()->user()->name ?? 'A',0,1)) }}
 
         </div>
 
