@@ -27,8 +27,8 @@
             <span>Laporan & Pesan</span>
         </a>
 
-        <a href="/admin/profil"
-        class="menu-item">
+       <a href="{{ route('admin.profil') }}"
+        class="menu-item {{ request()->is('admin/profil') ? 'active' : '' }}">
             <i class="bi bi-building"></i>
             <span>Profil Kelurahan</span>
         </a>
@@ -41,12 +41,23 @@
 
     </div>
 
-    <div class="sidebar-footer">
+   <div class="sidebar-footer">
+        <form action="{{ route('logout') }}"
+            method="POST">
 
-        <a href="#" class="logout-btn">
-            <i class="bi bi-box-arrow-right"></i>
-            <span>Logout</span>
-        </a>
+            @csrf
+
+            <button
+                type="submit"
+                class="logout-btn">
+
+                <i class="bi bi-box-arrow-right"></i>
+
+                <span>Logout</span>
+
+            </button>
+
+        </form>
 
     </div>
 

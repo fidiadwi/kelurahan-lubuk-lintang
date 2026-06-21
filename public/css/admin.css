@@ -462,3 +462,28 @@ NAVBAR MODERN
     align-items:center;
     justify-content:center;
 }
+
+.sidebar-footer form{
+    width:100%;
+}
+
+.logout-btn{
+    width:100%;
+    border:none;
+    background:none;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:12px 16px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    color:#64748b;
+
+    transition:.25s;
+}

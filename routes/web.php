@@ -1,46 +1,105 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\AuthController;
+
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LaporanController;
+use App\Http\Controllers\Admin\ProfilController;
+
+/*
+|--------------------------------------------------------------------------
+| Halaman Awal
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/', function () {
-    return redirect('/admin/dashboard');
+
+    return redirect('/login');
+
 });
 
 /*
 |--------------------------------------------------------------------------
-| Dashboard
+| Login Admin
 |--------------------------------------------------------------------------
 */
 
 Route::get(
-    '/admin/dashboard',
-    [DashboardController::class, 'index']
-)->name('admin.dashboard');
+    '/login',
+    [AuthController::class,'loginForm']
+)->name('login');
+
+Route::post(
+    '/login',
+    [AuthController::class,'login']
+)->name('login.process');
+
+Route::post(
+    '/logout',
+    [AuthController::class,'logout']
+)->name('logout');
 
 /*
 |--------------------------------------------------------------------------
-| Laporan & Pesan
+| Area Admin (Wajib Login)
 |--------------------------------------------------------------------------
 */
 
-Route::get(
-    '/admin/laporan',
-    [LaporanController::class, 'index']
-)->name('admin.laporan');
+Route::middleware('auth')->group(function(){
 
-Route::post(
-    '/admin/laporan/{id}/balas',
-    [LaporanController::class, 'balas']
-)->name('admin.laporan.balas');
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard
+    |--------------------------------------------------------------------------
+    */
 
-Route::get(
-    '/admin/laporan/{id}/dibaca',
-    [LaporanController::class, 'dibaca']
-)->name('admin.laporan.dibaca');
+    Route::get(
+        '/admin/dashboard',
+        [DashboardController::class,'index']
+    )->name('admin.dashboard');
 
-Route::delete(
-    '/admin/laporan/{id}',
-    [LaporanController::class, 'destroy']
-)->name('admin.laporan.destroy');
+    /*
+    |--------------------------------------------------------------------------
+    | Laporan & Pesan
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get(
+        '/admin/laporan',
+        [LaporanController::class,'index']
+    )->name('admin.laporan');
+
+    Route::post(
+        '/admin/laporan/{id}/balas',
+        [LaporanController::class,'balas']
+    )->name('admin.laporan.balas');
+
+    Route::get(
+        '/admin/laporan/{id}/dibaca',
+        [LaporanController::class,'dibaca']
+    )->name('admin.laporan.dibaca');
+
+    Route::delete(
+        '/admin/laporan/{id}',
+        [LaporanController::class,'destroy']
+    )->name('admin.laporan.destroy');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Profil Kelurahan
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get(
+        '/admin/profil',
+        [ProfilController::class,'index']
+    )->name('admin.profil');
+
+    Route::post(
+        '/admin/profil/update',
+        [ProfilController::class,'update']
+    )->name('admin.profil.update');
+
+});
