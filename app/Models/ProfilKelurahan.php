@@ -9,12 +9,20 @@ class ProfilKelurahan extends Model
     protected $table = 'profil_kelurahans';
 
     protected $fillable = [
+
         'nama_kelurahan',
+        'tahun_berdiri',
+
         'sejarah',
+
         'visi',
         'misi',
+
         'alamat',
         'telepon',
-        'email'
+        'email',
+
+        'foto_kantor'
+
     ];
 }

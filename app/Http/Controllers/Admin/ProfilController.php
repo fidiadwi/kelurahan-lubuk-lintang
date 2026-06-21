@@ -21,7 +21,11 @@ class ProfilController extends Controller
     public function update(Request $request)
     {
         $request->validate([
+
             'nama_kelurahan' => 'required',
+
+            'foto_kantor' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+
         ]);
 
         $profil = ProfilKelurahan::first();
@@ -32,18 +36,40 @@ class ProfilController extends Controller
         }
 
         $profil->nama_kelurahan = $request->nama_kelurahan;
+
+        $profil->tahun_berdiri = $request->tahun_berdiri;
+
         $profil->sejarah = $request->sejarah;
+
         $profil->visi = $request->visi;
+
         $profil->misi = $request->misi;
+
         $profil->alamat = $request->alamat;
+
         $profil->telepon = $request->telepon;
+
         $profil->email = $request->email;
+
+        if($request->hasFile('foto_kantor'))
+        {
+            $file = $request->file('foto_kantor');
+
+            $namaFile = time().'_'.$file->getClientOriginalName();
+
+            $file->move(
+                public_path('uploads/profil'),
+                $namaFile
+            );
+
+            $profil->foto_kantor = $namaFile;
+        }
 
         $profil->save();
 
         return back()->with(
             'success',
-            'Profil kelurahan berhasil diperbarui'
+            'Profil Kelurahan berhasil diperbarui'
         );
     }
 }
