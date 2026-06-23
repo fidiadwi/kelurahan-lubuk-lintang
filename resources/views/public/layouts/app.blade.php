@@ -38,13 +38,9 @@
 
         <div class="logo-text">
 
-            <h4>
-                Kelurahan
-            </h4>
+            <h4>Kelurahan</h4>
 
-            <span>
-                Lubuk Lintang
-            </span>
+            <span>Lubuk Lintang</span>
 
         </div>
 
@@ -56,20 +52,20 @@
             Beranda
         </a>
 
-        <a href="#tentang">
+        <a href="{{ route('profil') }}">
             Profil
         </a>
 
-        <a href="#perangkat">
+        <a href="{{ route('perangkat') }}">
             Perangkat
         </a>
 
-        <a href="#galeri">
-            Galeri
+        <a href="{{ route('dokumentasi') }}">
+            Dokumentasi
         </a>
 
-        <a href="#aspirasi">
-            Aspirasi
+        <a href="{{ route('kontak') }}">
+            Kontak
         </a>
 
     </div>
@@ -166,26 +162,26 @@
                     </li>
 
                     <li>
-                        <a href="#tentang">
+                        <a href="{{ route('profil') }}">
                             Profil Kelurahan
                         </a>
                     </li>
 
                     <li>
-                        <a href="#perangkat">
+                        <a href="{{ route('perangkat') }}">
                             Perangkat Kelurahan
                         </a>
                     </li>
 
                     <li>
-                        <a href="#galeri">
-                            Dokumentasi
+                        <a href="{{ route('dokumentasi') }}">
+                            Dokumentasi Kegiatan
                         </a>
                     </li>
 
                     <li>
-                        <a href="#aspirasi">
-                            Aspirasi Masyarakat
+                        <a href="{{ route('kontak') }}">
+                            Kontak & Aspirasi
                         </a>
                     </li>
 
@@ -206,18 +202,13 @@
                 </p>
 
                 <p>
-
                     <i class="bi bi-clock"></i>
-
                     08.00 - 16.00 WIB
-
                 </p>
 
                 <p>
-
                     Kami siap melayani dengan
                     sepenuh hati dan profesional.
-
                 </p>
 
             </div>

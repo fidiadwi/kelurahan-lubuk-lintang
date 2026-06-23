@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LaporanController;
@@ -10,11 +11,10 @@ use App\Http\Controllers\Admin\ProfilController;
 use App\Http\Controllers\Admin\PerangkatController;
 use App\Http\Controllers\Admin\GaleriController;
 use App\Http\Controllers\Admin\PengaturanController;
-use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
-| Halaman Awal
+| WEBSITE PUBLIK
 |--------------------------------------------------------------------------
 */
 
@@ -22,12 +22,37 @@ Route::get(
     '/',
     [HomeController::class,'index']
 )->name('home');
+
+Route::post(
+    '/kirim-aspirasi',
+    [HomeController::class,'kirimAspirasi']
+)->name('kirim.aspirasi');
+
+Route::get(
+    '/profil',
+    [HomeController::class,'profil']
+)->name('profil');
+
+Route::get(
+    '/perangkat',
+    [HomeController::class,'perangkat']
+)->name('perangkat');
+
+Route::get(
+    '/dokumentasi',
+    [HomeController::class,'dokumentasi']
+)->name('dokumentasi');
+
+Route::get(
+    '/kontak',
+    [HomeController::class,'kontak']
+)->name('kontak');
+
 /*
 |--------------------------------------------------------------------------
-| Login Admin
+| LOGIN ADMIN
 |--------------------------------------------------------------------------
 */
-
 Route::get(
     '/login',
     [AuthController::class,'loginForm']
@@ -45,7 +70,7 @@ Route::post(
 
 /*
 |--------------------------------------------------------------------------
-| Area Admin (Wajib Login)
+| AREA ADMIN
 |--------------------------------------------------------------------------
 */
 
@@ -104,7 +129,7 @@ Route::middleware('auth')->group(function(){
         [ProfilController::class,'update']
     )->name('admin.profil.update');
 
-        /*
+    /*
     |--------------------------------------------------------------------------
     | Perangkat Kelurahan
     |--------------------------------------------------------------------------
@@ -120,15 +145,15 @@ Route::middleware('auth')->group(function(){
         [PerangkatController::class,'store']
     )->name('admin.perangkat.store');
 
-    Route::delete(
-        '/admin/perangkat/{id}',
-        [PerangkatController::class,'destroy']
-    )->name('admin.perangkat.destroy');
-
     Route::put(
         '/admin/perangkat/{id}',
         [PerangkatController::class,'update']
     )->name('admin.perangkat.update');
+
+    Route::delete(
+        '/admin/perangkat/{id}',
+        [PerangkatController::class,'destroy']
+    )->name('admin.perangkat.destroy');
 
     /*
     |--------------------------------------------------------------------------
@@ -146,15 +171,15 @@ Route::middleware('auth')->group(function(){
         [GaleriController::class,'store']
     )->name('admin.galeri.store');
 
-    Route::delete(
-        '/admin/galeri/{id}',
-        [GaleriController::class,'destroy']
-    )->name('admin.galeri.destroy');
-
     Route::put(
         '/admin/galeri/{id}',
         [GaleriController::class,'update']
     )->name('admin.galeri.update');
+
+    Route::delete(
+        '/admin/galeri/{id}',
+        [GaleriController::class,'destroy']
+    )->name('admin.galeri.destroy');
 
     /*
     |--------------------------------------------------------------------------
