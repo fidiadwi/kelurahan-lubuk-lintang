@@ -75,18 +75,25 @@ class HomeController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    public function perangkat()
+   public function perangkat()
     {
         $profil = ProfilKelurahan::first();
 
+        if (!$profil) {
+            $profil = new ProfilKelurahan();
+        }
+
         $perangkat = PerangkatKelurahan::orderBy('urutan')
             ->get();
+
+        $lurah = $perangkat->first();
 
         return view(
             'public.perangkat',
             compact(
                 'profil',
-                'perangkat'
+                'perangkat',
+                'lurah'
             )
         );
     }

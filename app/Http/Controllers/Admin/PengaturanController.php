@@ -38,7 +38,7 @@ class PengaturanController extends Controller
 
         $user = Auth::user();
 
-        if(
+        if (
             !Hash::check(
                 $request->password_lama,
                 $user->password
@@ -53,18 +53,16 @@ class PengaturanController extends Controller
 
         $data = [
 
-            'name' => $request->name,
+            'name' => trim($request->name),
 
-            'email' => $request->email
+            'email' => trim($request->email)
 
         ];
 
-        if($request->filled('password_baru'))
+        if ($request->filled('password_baru'))
         {
             $data['password'] =
-                Hash::make(
-                    $request->password_baru
-                );
+                $request->password_baru;
         }
 
         $user->update($data);

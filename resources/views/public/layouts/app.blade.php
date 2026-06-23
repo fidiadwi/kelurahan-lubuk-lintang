@@ -4,7 +4,6 @@
 
 <head>
 
-```
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -19,13 +18,13 @@
 
 <link rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-```
+
+@yield('styles')
 
 </head>
 
 <body>
 
-```
 <!-- NAVBAR -->
 
 <nav class="navbar">
@@ -46,28 +45,31 @@
 
     </div>
 
-    <div class="nav-menu">
-
-        <a href="{{ route('home') }}">
+   <div class="nav-menu">
+        <a href="{{ route('home') }}"
+        class="{{ request()->routeIs('home') ? 'active' : '' }}">
             Beranda
         </a>
 
-        <a href="{{ route('profil') }}">
+        <a href="{{ route('profil') }}"
+        class="{{ request()->routeIs('profil') ? 'active' : '' }}">
             Profil
         </a>
 
-        <a href="{{ route('perangkat') }}">
+        <a href="{{ route('perangkat') }}"
+        class="{{ request()->routeIs('perangkat') ? 'active' : '' }}">
             Perangkat
         </a>
 
-        <a href="{{ route('dokumentasi') }}">
+        <a href="{{ route('dokumentasi') }}"
+        class="{{ request()->routeIs('dokumentasi') ? 'active' : '' }}">
             Dokumentasi
         </a>
 
-        <a href="{{ route('kontak') }}">
+        <a href="{{ route('kontak') }}"
+        class="{{ request()->routeIs('kontak') ? 'active' : '' }}">
             Kontak
         </a>
-
     </div>
 
     <a href="{{ route('login') }}"
@@ -246,7 +248,6 @@
     </div>
 
 </footer>
-```
 
 </body>
 

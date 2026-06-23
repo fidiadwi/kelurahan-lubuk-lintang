@@ -22,7 +22,18 @@ class ProfilKelurahan extends Model
         'telepon',
         'email',
 
-        'foto_kantor'
+        'foto_kantor',
 
+        'luas_wilayah',
+        'jumlah_penduduk',
+        'jumlah_kk',
+        'jumlah_rt_rw',
+
+        'batas_utara',
+        'batas_selatan',
+        'batas_timur',
+        'batas_barat',
+
+        'maps_embed'
     ];
 }

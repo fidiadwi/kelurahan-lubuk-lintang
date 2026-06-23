@@ -1,0 +1,352 @@
+/* =========================
+HEADER
+========================= */
+
+.perangkat-header{
+    padding:140px 0 60px;
+    background:#f8fafc;
+}
+
+.perangkat-header h1{
+    font-size:52px;
+    color:#0B2E63;
+    font-weight:800;
+}
+
+.perangkat-header p{
+    color:#64748b;
+    margin-top:10px;
+}
+
+/* =========================
+PIMPINAN
+========================= */
+
+.kepala-kelurahan{
+    padding-bottom:80px;
+}
+
+.kepala-grid{
+    display:grid;
+    grid-template-columns:420px 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.kepala-foto img{
+    width:100%;
+    height:520px;
+    object-fit:cover;
+    border-radius:24px;
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
+
+.foto-kosong{
+    width:100%;
+    height:520px;
+
+    background:#eef4ff;
+
+    border-radius:24px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.foto-kosong i{
+    font-size:120px;
+    color:#0B2E63;
+}
+
+.badge-pimpinan{
+    display:inline-block;
+
+    background:#dcfce7;
+    color:#166534;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    font-size:14px;
+    font-weight:600;
+}
+
+.kepala-info h2{
+    font-size:52px;
+    color:#0B2E63;
+    margin:20px 0 10px;
+}
+
+.kepala-info h4{
+    color:#64748b;
+    margin-bottom:20px;
+    font-size:20px;
+}
+
+.garis{
+    width:80px;
+    height:4px;
+    background:#0B2E63;
+    border-radius:20px;
+    margin-bottom:20px;
+}
+
+.kepala-info p{
+    color:#475569;
+    line-height:1.9;
+}
+
+/* =========================
+STRUKTUR ORGANISASI
+========================= */
+
+.struktur-organisasi{
+    padding:80px 0;
+    background:#f8fafc;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title h2{
+    color:#0B2E63;
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#64748b;
+}
+
+.bagan-wrapper{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.bagan-lurah{
+    background:#0B2E63;
+    color:white;
+
+    padding:20px 35px;
+
+    border-radius:14px;
+
+    min-width:300px;
+
+    text-align:center;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.bagan-lurah h4{
+    margin-bottom:8px;
+    font-size:14px;
+    text-transform:uppercase;
+}
+
+.bagan-lurah span{
+    font-weight:700;
+}
+
+.bagan-line{
+    width:3px;
+    height:60px;
+    background:#cbd5e1;
+}
+
+.bagan-bawah{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.bagan-box{
+    background:white;
+
+    border-radius:16px;
+
+    padding:25px;
+
+    min-width:240px;
+
+    text-align:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.bagan-box h5{
+    color:#0B2E63;
+    margin-bottom:10px;
+}
+
+.bagan-box span{
+    color:#475569;
+}
+
+/* =========================
+TABLE
+========================= */
+
+.perangkat-table-section{
+    padding:90px 0;
+}
+
+.table-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.table-header h2{
+    color:#0B2E63;
+}
+
+.table-header span{
+    color:#64748b;
+}
+
+.table-wrapper{
+    overflow-x:auto;
+}
+
+.perangkat-table{
+    width:100%;
+    border-collapse:collapse;
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+}
+
+.perangkat-table th{
+    background:#eef4ff;
+    color:#0B2E63;
+    padding:18px;
+    text-align:left;
+}
+
+.perangkat-table td{
+    padding:18px;
+    border-top:1px solid #e2e8f0;
+}
+
+.table-foto{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.table-avatar{
+    width:65px;
+    height:65px;
+
+    border-radius:50%;
+
+    background:#eef4ff;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.table-avatar i{
+    color:#0B2E63;
+    font-size:28px;
+}
+
+.jabatan-badge{
+    background:#eff6ff;
+    color:#1d4ed8;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-size:14px;
+    font-weight:600;
+}
+
+/* =========================
+EMPTY
+========================= */
+
+.empty-data{
+    text-align:center;
+    padding:50px;
+}
+
+.empty-data i{
+    font-size:60px;
+    color:#94a3b8;
+}
+
+.empty-data h3{
+    margin-top:15px;
+    color:#334155;
+}
+
+.empty-data p{
+    color:#64748b;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:992px){
+
+    .kepala-grid{
+        grid-template-columns:1fr;
+    }
+
+    .kepala-info{
+        text-align:center;
+    }
+
+    .garis{
+        margin:auto auto 20px;
+    }
+
+    .table-header{
+        flex-direction:column;
+        gap:10px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .perangkat-header{
+        padding:120px 0 50px;
+    }
+
+    .perangkat-header h1{
+        font-size:38px;
+    }
+
+    .kepala-info h2{
+        font-size:38px;
+    }
+
+    .bagan-bawah{
+        flex-direction:column;
+        width:100%;
+    }
+
+    .bagan-box{
+        width:100%;
+    }
+
+}

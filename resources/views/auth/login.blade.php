@@ -21,6 +21,17 @@
 <body>
 
 <div class="login-wrapper">
+    <div class="back-home">
+
+        <a href="{{ route('home') }}">
+
+            <i class="bi bi-arrow-left"></i>
+
+            Kembali ke Website
+
+        </a>
+
+    </div>
 
     <div class="login-card">
 
