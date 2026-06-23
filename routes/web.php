@@ -151,4 +151,9 @@ Route::middleware('auth')->group(function(){
         [GaleriController::class,'destroy']
     )->name('admin.galeri.destroy');
 
+    Route::put(
+        '/admin/galeri/{id}',
+        [GaleriController::class,'update']
+    )->name('admin.galeri.update');
+
 });

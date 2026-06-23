@@ -133,6 +133,52 @@
     color:#94a3b8;
 }
 
+.gallery-action{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.btn-edit{
+    margin-top:15px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:10px 16px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.edit-galeri{
+    background:white;
+    margin-top:15px;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 3px 10px rgba(0,0,0,.05);
+}
+
+.preview-wrapper{
+    margin-top:15px;
+}
+
+.preview-image{
+    width:100%;
+    max-width:350px;
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:16px;
+
+    border:2px dashed #cbd5e1;
+
+    padding:5px;
+
+    background:white;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.05);
+}
+
 @media(max-width:768px){
 
     .form-grid{

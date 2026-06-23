@@ -67,6 +67,50 @@ class GaleriController extends Controller
         );
     }
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+
+            'judul' => 'required',
+
+            'tanggal_kegiatan' => 'required'
+
+        ]);
+
+        $galeri = Galeri::findOrFail($id);
+
+        $foto = $galeri->foto;
+
+        if($request->hasFile('foto'))
+        {
+            $file = $request->file('foto');
+
+            $foto = time().'_'.$file->getClientOriginalName();
+
+            $file->move(
+                public_path('uploads/galeri'),
+                $foto
+            );
+        }
+
+        $galeri->update([
+
+            'judul' => $request->judul,
+
+            'tanggal_kegiatan' => $request->tanggal_kegiatan,
+
+            'keterangan' => $request->keterangan,
+
+            'foto' => $foto
+
+        ]);
+
+        return back()->with(
+            'success',
+            'Dokumentasi berhasil diperbarui'
+        );
+    }
+
     public function destroy($id)
     {
         $galeri = Galeri::findOrFail($id);

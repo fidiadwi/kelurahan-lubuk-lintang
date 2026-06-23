@@ -77,15 +77,22 @@
 
         </div>
 
-        <div class="form-group">
-
+      <div class="form-group">
             <label>Foto Dokumentasi</label>
-
             <input
                 type="file"
                 name="foto"
+                id="fotoPreview"
                 required>
+        </div>
 
+        <div class="preview-wrapper">
+            <img
+                id="previewImage"
+                src=""
+                alt="Preview Foto"
+                class="preview-image"
+                style="display:none;">
         </div>
 
         <button
@@ -106,38 +113,128 @@
 
     @forelse($galeri as $item)
 
-    <div class="gallery-card">
+    <div>
 
-        <img
-            src="{{ asset('uploads/galeri/'.$item->foto) }}"
-            alt="{{ $item->judul }}">
+        <div class="gallery-card">
 
-        <div class="gallery-body">
+            <img
+                src="{{ asset('uploads/galeri/'.$item->foto) }}"
+                alt="{{ $item->judul }}">
 
-            <h4>{{ $item->judul }}</h4>
+            <div class="gallery-body">
 
-            <small>
-                {{ \Carbon\Carbon::parse($item->tanggal_kegiatan)->format('d M Y') }}
-            </small>
+                <h4>{{ $item->judul }}</h4>
 
-            <p>
-                {{ $item->keterangan }}
-            </p>
+                <small>
+                    {{ \Carbon\Carbon::parse($item->tanggal_kegiatan)->format('d M Y') }}
+                </small>
+
+                <p>
+                    {{ $item->keterangan }}
+                </p>
+
+                <div class="gallery-action">
+
+                    <button
+                        type="button"
+                        class="btn-edit"
+                        onclick="toggleEdit({{ $item->id }})">
+
+                        <i class="bi bi-pencil"></i>
+
+                        Edit
+
+                    </button>
+
+                    <form
+                        action="{{ route('admin.galeri.destroy',$item->id) }}"
+                        method="POST">
+
+                        @csrf
+                        @method('DELETE')
+
+                        <button
+                            type="submit"
+                            class="btn-delete">
+
+                            <i class="bi bi-trash"></i>
+
+                            Hapus
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div
+            id="edit-{{ $item->id }}"
+            class="edit-galeri"
+            style="display:none;">
 
             <form
-                action="{{ route('admin.galeri.destroy',$item->id) }}"
-                method="POST">
+                action="{{ route('admin.galeri.update',$item->id) }}"
+                method="POST"
+                enctype="multipart/form-data">
 
                 @csrf
-                @method('DELETE')
+                @method('PUT')
+
+                <div class="form-group">
+
+                    <label>Judul Kegiatan</label>
+
+                    <input
+                        type="text"
+                        name="judul"
+                        value="{{ $item->judul }}"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Tanggal Kegiatan</label>
+
+                    <input
+                        type="date"
+                        name="tanggal_kegiatan"
+                        value="{{ $item->tanggal_kegiatan }}"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Keterangan</label>
+
+                    <textarea
+                        name="keterangan"
+                        rows="4">{{ $item->keterangan }}</textarea>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Foto Baru (Opsional)</label>
+
+                    <input
+                        type="file"
+                        name="foto">
+
+                </div>
 
                 <button
                     type="submit"
-                    class="btn-delete">
+                    class="btn-upload">
 
-                    <i class="bi bi-trash"></i>
+                    <i class="bi bi-check-circle"></i>
 
-                    Hapus
+                    Simpan Perubahan
 
                 </button>
 
@@ -158,5 +255,56 @@
     @endforelse
 
 </div>
+
+<script>
+
+function toggleEdit(id)
+{
+    let form = document.getElementById('edit-' + id);
+
+    if(form.style.display === 'none')
+    {
+        form.style.display = 'block';
+    }
+    else
+    {
+        form.style.display = 'none';
+    }
+}
+
+</script>
+
+<script>
+
+const fotoInput =
+    document.getElementById('fotoPreview');
+
+if(fotoInput)
+{
+    fotoInput.addEventListener('change', function(e){
+
+        let file = e.target.files[0];
+
+        if(file)
+        {
+            let reader = new FileReader();
+
+            reader.onload = function(event)
+            {
+                let preview =
+                    document.getElementById('previewImage');
+
+                preview.src = event.target.result;
+
+                preview.style.display = 'block';
+            }
+
+            reader.readAsDataURL(file);
+        }
+
+    });
+}
+
+</script>
 
 @endsection
