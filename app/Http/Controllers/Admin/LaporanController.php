@@ -43,10 +43,26 @@ class LaporanController extends Controller
 
                 'target' => $pesan->no_hp,
 
-                'message' =>
-                    "Balasan Kelurahan Lubuk Lintang\n\n" .
-                    "Subjek : " . $pesan->subjek . "\n\n" .
-                    $request->balasan
+               'message' =>
+                    "🏢 *KELURAHAN LUBUK LINTANG*\n\n" .
+
+                    "Yth. *{$pesan->nama}*,\n\n" .
+
+                    "Terima kasih telah menghubungi Kelurahan Lubuk Lintang.\n\n" .
+
+                    "📌 *Subjek Pengaduan/Pesan*\n" .
+                    $pesan->subjek . "\n\n" .
+
+                    "💬 *Balasan Admin*\n" .
+                    $request->balasan . "\n\n" .
+
+                    "──────────────────\n" .
+
+                    "Pesan ini dikirim otomatis melalui Sistem Informasi Kelurahan Lubuk Lintang.\n" .
+
+                    "📞 Hubungi kantor kelurahan apabila memerlukan informasi lebih lanjut.\n\n" .
+
+                    "Terima kasih."
 
             ]);
 
