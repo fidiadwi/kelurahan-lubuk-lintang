@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\ProfilController;
 use App\Http\Controllers\Admin\PerangkatController;
+use App\Http\Controllers\Admin\GaleriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,5 +129,26 @@ Route::middleware('auth')->group(function(){
         '/admin/perangkat/{id}',
         [PerangkatController::class,'update']
     )->name('admin.perangkat.update');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Galeri Dokumentasi
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get(
+        '/admin/galeri',
+        [GaleriController::class,'index']
+    )->name('admin.galeri');
+
+    Route::post(
+        '/admin/galeri',
+        [GaleriController::class,'store']
+    )->name('admin.galeri.store');
+
+    Route::delete(
+        '/admin/galeri/{id}',
+        [GaleriController::class,'destroy']
+    )->name('admin.galeri.destroy');
 
 });

@@ -39,8 +39,8 @@
             <span>Perangkat Kelurahan</span>
         </a>
 
-        <a href="/admin/galeri"
-        class="menu-item">
+        <a href="{{ route('admin.galeri') }}"
+        class="menu-item {{ request()->is('admin/galeri') ? 'active' : '' }}">
             <i class="bi bi-images"></i>
             <span>Galeri Dokumentasi</span>
         </a>
