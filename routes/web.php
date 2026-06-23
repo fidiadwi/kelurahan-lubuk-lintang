@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\ProfilController;
 use App\Http\Controllers\Admin\PerangkatController;
 use App\Http\Controllers\Admin\GaleriController;
+use App\Http\Controllers\Admin\PengaturanController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +18,10 @@ use App\Http\Controllers\Admin\GaleriController;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-
-    return redirect('/login');
-
-});
-
+Route::get(
+    '/',
+    [HomeController::class,'index']
+)->name('home');
 /*
 |--------------------------------------------------------------------------
 | Login Admin
@@ -155,5 +155,21 @@ Route::middleware('auth')->group(function(){
         '/admin/galeri/{id}',
         [GaleriController::class,'update']
     )->name('admin.galeri.update');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Pengaturan Akun
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get(
+        '/admin/pengaturan',
+        [PengaturanController::class,'index']
+    )->name('admin.pengaturan');
+
+    Route::post(
+        '/admin/pengaturan/password',
+        [PengaturanController::class,'updatePassword']
+    )->name('admin.password.update');
 
 });

@@ -1,0 +1,97 @@
+.setting-card{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    max-width:700px;
+    box-shadow:0 3px 10px rgba(0,0,0,.05);
+}
+
+.setting-header{
+    margin-bottom:25px;
+}
+
+.setting-header h2{
+    color:#0B2E63;
+    margin-bottom:8px;
+}
+
+.setting-header p{
+    color:#64748b;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+.password-box{
+    display:flex;
+    align-items:center;
+    border:1px solid #dbe2ea;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.password-box input{
+    flex:1;
+    border:none;
+    padding:14px;
+    outline:none;
+}
+
+.password-box button{
+    border:none;
+    background:white;
+    padding:0 15px;
+    cursor:pointer;
+}
+
+.btn-save{
+    background:#0B2E63;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.alert-success{
+    background:#dcfce7;
+    color:#166534;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+.alert-error{
+    background:#fee2e2;
+    color:#991b1b;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+.divider{
+    margin:25px 0;
+    border:none;
+    border-top:1px solid #e5e7eb;
+}
+
+.section-title{
+    color:#0B2E63;
+    margin-bottom:20px;
+}
+
+.form-group input{
+    width:100%;
+    padding:14px;
+    border:1px solid #dbe2ea;
+    border-radius:12px;
+    outline:none;
+}

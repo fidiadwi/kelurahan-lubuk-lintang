@@ -45,6 +45,12 @@
             <span>Galeri Dokumentasi</span>
         </a>
 
+        <a href="{{ route('admin.pengaturan') }}"
+        class="menu-item {{ request()->is('admin/pengaturan') ? 'active' : '' }}">
+            <i class="bi bi-gear"></i>
+            <span>Pengaturan Akun</span>
+        </a>
+
     </div>
 
    <div class="sidebar-footer">
