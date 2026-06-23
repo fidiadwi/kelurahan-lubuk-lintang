@@ -263,3 +263,36 @@ RESPONSIVE
     border-radius:12px;
     margin-bottom:20px;
 }
+
+.table-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.search-box{
+    position:relative;
+    width:320px;
+}
+
+.search-box i{
+    position:absolute;
+    left:14px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#94a3b8;
+}
+
+.search-box input{
+    width:100%;
+    padding:12px 15px 12px 42px;
+    border:1px solid #dbe2ea;
+    border-radius:12px;
+    outline:none;
+}
+
+.search-box input:focus{
+    border-color:#0B2E63;
+}

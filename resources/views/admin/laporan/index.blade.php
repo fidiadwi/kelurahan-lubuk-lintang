@@ -64,7 +64,20 @@
 <div class="table-card">
 
     <div class="table-header">
+
         <h3>Daftar Pesan Masuk</h3>
+
+        <div class="search-box">
+
+            <i class="bi bi-search"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Cari nama, no HP, atau subjek...">
+
+        </div>
+
     </div>
 
     <table>
@@ -87,7 +100,7 @@
 
             @forelse($pesans as $item)
 
-            <tr>
+            <tr class="pesan-row">
 
                 <td>{{ $loop->iteration }}</td>
 
@@ -297,6 +310,35 @@ function toggleDetail(id)
         row.style.display = 'none';
     }
 }
+
+const searchInput =
+document.getElementById('searchInput');
+
+searchInput.addEventListener('keyup', function(){
+
+    let keyword =
+    this.value.toLowerCase();
+
+    let rows =
+    document.querySelectorAll('.pesan-row');
+
+    rows.forEach(function(row){
+
+        let text =
+        row.innerText.toLowerCase();
+
+        if(text.includes(keyword))
+        {
+            row.style.display = '';
+        }
+        else
+        {
+            row.style.display = 'none';
+        }
+
+    });
+
+});
 
 </script>
 
