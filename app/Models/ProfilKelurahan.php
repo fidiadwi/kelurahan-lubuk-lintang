@@ -34,6 +34,12 @@ class ProfilKelurahan extends Model
         'batas_timur',
         'batas_barat',
 
-        'maps_embed'
+        'maps_embed',
+
+        'banner_beranda',
+        'banner_profil',
+        'banner_perangkat',
+        'banner_dokumentasi',
+        'banner_kontak',
     ];
 }

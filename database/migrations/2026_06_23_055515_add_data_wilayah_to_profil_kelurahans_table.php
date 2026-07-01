@@ -6,30 +6,24 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up(): void
-    {
-        Schema::table('profil_kelurahans', function (Blueprint $table) {
+   public function up(): void
+{
+    Schema::table('profil_kelurahans', function (Blueprint $table) {
 
-            $table->string('luas_wilayah')->nullable();
+        $table->string('luas_wilayah')->nullable();
+        $table->string('jumlah_penduduk')->nullable();
+        $table->string('jumlah_kk')->nullable();
+        $table->string('jumlah_rt_rw')->nullable();
 
-            $table->string('jumlah_penduduk')->nullable();
+        $table->string('batas_utara')->nullable();
+        $table->string('batas_selatan')->nullable();
+        $table->string('batas_timur')->nullable();
+        $table->string('batas_barat')->nullable();
 
-            $table->string('jumlah_kk')->nullable();
+        $table->text('maps_embed')->nullable();
 
-            $table->string('jumlah_rt_rw')->nullable();
-
-            $table->string('batas_utara')->nullable();
-
-            $table->string('batas_selatan')->nullable();
-
-            $table->string('batas_timur')->nullable();
-
-            $table->string('batas_barat')->nullable();
-
-            $table->longText('maps_embed')->nullable();
-
-        });
-    }
+    });
+}
 
     public function down(): void
     {

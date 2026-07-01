@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\ProfilKelurahan;
 use App\Models\PerangkatKelurahan;
 use App\Models\Galeri;
@@ -25,23 +24,29 @@ class HomeController extends Controller
             $profil = new ProfilKelurahan();
         }
 
+        // Ambil 4 perangkat untuk ditampilkan
         $perangkat = PerangkatKelurahan::orderBy('urutan')
             ->take(4)
             ->get();
 
+        // Ambil lurah (diasumsikan urutan pertama)
+        $lurah = PerangkatKelurahan::orderBy('urutan')->first();
+
+        // Galeri terbaru
         $galeri = Galeri::latest()
             ->take(6)
             ->get();
 
+        // Statistik
         $totalPerangkat = PerangkatKelurahan::count();
-
-        $totalGaleri = Galeri::count();
+        $totalGaleri    = Galeri::count();
 
         return view(
             'public.home',
             compact(
                 'profil',
                 'perangkat',
+                'lurah',
                 'galeri',
                 'totalPerangkat',
                 'totalGaleri'
@@ -71,11 +76,11 @@ class HomeController extends Controller
 
     /*
     |--------------------------------------------------------------------------
-    | PERANGKAT KELURAHAN
+    | PEMERINTAH / PERANGKAT KELURAHAN
     |--------------------------------------------------------------------------
     */
 
-   public function perangkat()
+    public function perangkat()
     {
         $profil = ProfilKelurahan::first();
 
@@ -83,10 +88,10 @@ class HomeController extends Controller
             $profil = new ProfilKelurahan();
         }
 
-        $perangkat = PerangkatKelurahan::orderBy('urutan')
-            ->get();
+        $perangkat = PerangkatKelurahan::orderBy('urutan')->get();
 
-        $lurah = $perangkat->first();
+        // Lurah = urutan pertama
+        $lurah = PerangkatKelurahan::orderBy('urutan')->first();
 
         return view(
             'public.perangkat',
@@ -108,8 +113,11 @@ class HomeController extends Controller
     {
         $profil = ProfilKelurahan::first();
 
-        $galeri = Galeri::latest()
-            ->paginate(12);
+        if (!$profil) {
+            $profil = new ProfilKelurahan();
+        }
+
+        $galeri = Galeri::latest()->paginate(12);
 
         return view(
             'public.dokumentasi',
@@ -122,7 +130,7 @@ class HomeController extends Controller
 
     /*
     |--------------------------------------------------------------------------
-    | KONTAK & ASPIRASI
+    | KONTAK
     |--------------------------------------------------------------------------
     */
 
@@ -156,13 +164,11 @@ class HomeController extends Controller
         ]);
 
         Pesan::create([
-
             'nama'   => $request->nama,
             'no_hp'  => $request->no_hp,
             'subjek' => $request->subjek,
             'pesan'  => $request->pesan,
             'status' => 'baru'
-
         ]);
 
         return redirect()

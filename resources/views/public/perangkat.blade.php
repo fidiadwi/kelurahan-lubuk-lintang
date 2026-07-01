@@ -8,104 +8,172 @@
 
 @section('content')
 
-<!-- HEADER -->
+@php
 
-<section class="perangkat-header">
+$lurah = $perangkat->firstWhere('level','lurah');
+
+$sekretaris = $perangkat->where('parent_id', optional($lurah)->id)
+                        ->firstWhere('level','sekretaris');
+
+$kasiList = $perangkat->where('parent_id', optional($sekretaris)->id)
+                      ->where('level','kasi');
+
+$stafList = $perangkat->where('level','staf');
+
+$rwList = $perangkat->where('level','rw');
+
+$rtList = $perangkat->where('level','rt');
+
+@endphp
+
+{{-- ============================
+     HEADER
+============================= --}}
+
+<section
+    class="perangkat-header"
+    style="
+        background:
+        linear-gradient(rgba(7,26,65,.80), rgba(11,46,99,.74)),
+        url('{{ !empty($profil->banner_perangkat)
+                ? asset('uploads/profil/'.$profil->banner_perangkat)
+                : asset('images/kantor-kelurahan.jpg') }}')
+        center center / cover no-repeat;
+    ">
 
     <div class="container">
 
+        <div class="perangkat-breadcrumb">
+            <a href="{{ route('home') }}">Beranda</a>
+            <i class="bi bi-chevron-right"></i>
+            <span>Pemerintah (Perangkat Desa)</span>
+        </div>
+
         <h1>
-            Perangkat Kelurahan
+            Perangkat <br>
+            <span class="perangkat-highlight">
+                {{ $profil->nama_kelurahan ?? 'Lubuk Lintang' }}
+            </span>
         </h1>
 
         <p>
-            Struktur organisasi dan aparatur
-            {{ $profil->nama_kelurahan ?? 'Kelurahan Lubuk Lintang' }}
+            Struktur organisasi dan aparatur yang bertugas dalam
+            memberikan pelayanan terbaik kepada masyarakat.
         </p>
 
     </div>
 
 </section>
 
-<!-- PIMPINAN -->
+    {{-- Stats Bar --}}
+    <div class="perangkat-stats-bar">
+        <div class="container">
+            <div class="perangkat-stats-grid">
+
+                <div class="perangkat-stat-item">
+                    <div class="stat-icon" style="background:#EEF2FF;">
+                        <i class="bi bi-people-fill" style="color:#2563EB;"></i>
+                    </div>
+                    <div class="stat-body">
+                        <strong>{{ $perangkat->count() ?? '-' }}</strong>
+                        <span>Perangkat<br>Kelurahan</span>
+                    </div>
+                </div>
+
+               <div class="perangkat-stat-item">
+                    <div class="stat-icon" style="background:#FFF7ED;">
+                        <i class="bi bi-building" style="color:#D97706;"></i>
+                    </div>
+
+                    <div class="stat-body">
+                        <strong class="nowrap">
+                            {{ $profil->jumlah_rt_rw ?: '-' }}
+                        </strong>
+                        <span>RT / RW</span>
+                    </div>
+                </div>
+
+                <div class="perangkat-stat-item">
+                    <div class="stat-icon" style="background:#F5F3FF;">
+                        <i class="bi bi-calendar-event-fill" style="color:#7C3AED;"></i>
+                    </div>
+                    <div class="stat-body">
+                        <strong>{{ $profil->tahun_berdiri ?? '-' }}</strong>
+                        <span>Tahun<br>Berdiri</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{{-- ============================
+     PIMPINAN / LURAH
+============================= --}}
+
+@if($lurah)
 
 <section class="kepala-kelurahan">
 
     <div class="container">
 
-        <div class="kepala-grid">
+        <div class="kepala-card">
 
-            <div class="kepala-foto">
+            <div class="kepala-grid">
 
-                @if(isset($lurah) && $lurah && $lurah->foto)
+                <div class="kepala-foto">
 
-                    <img
-                        src="{{ asset('uploads/perangkat/'.$lurah->foto) }}"
-                        alt="{{ $lurah->nama }}">
+                    @if($lurah->foto)
+                        <img
+                            src="{{ asset('uploads/perangkat/'.$lurah->foto) }}"
+                            alt="{{ $lurah->nama }}">
+                    @else
+                        <div class="foto-kosong">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                    @endif
 
-                @elseif($perangkat->count() && $perangkat->first()->foto)
+                </div>
 
-                    <img
-                        src="{{ asset('uploads/perangkat/'.$perangkat->first()->foto) }}"
-                        alt="{{ $perangkat->first()->nama }}">
+                <div class="kepala-info">
 
-                @else
+                    <span class="badge-pimpinan">
+                        Pimpinan Wilayah
+                    </span>
 
-                    <div class="foto-kosong">
+                    <h2>
+                        {{ $lurah->nama }}
+                    </h2>
 
-                        <i class="bi bi-person-fill"></i>
+                    <h4>
+                        {{ $lurah->jabatan }} {{ $profil->nama_kelurahan ?? 'Lubuk Lintang' }}
+                    </h4>
+
+                    <p>
+                        {{ $lurah->deskripsi ?? 'Memimpin penyelenggaraan pemerintahan, pembangunan, pembinaan kemasyarakatan, dan pemberdayaan masyarakat '.($profil->nama_kelurahan ?? 'Kelurahan Lubuk Lintang').'.' }}
+                    </p>
+
+                    <div class="kepala-detail-list">
+
+                       <div class="kepala-detail-item">
+                            <i class="bi bi-person-vcard-fill"></i>
+                            <span class="detail-label">NIP</span>
+                            <span class="detail-value">
+                                {{ $lurah->nip ?: '-' }}
+                            </span>
+                        </div>
+
+                        <div class="kepala-detail-item">
+                            <i class="bi bi-calendar2-week-fill"></i>
+                            <span class="detail-label">Masa Jabatan</span>
+                            <span class="detail-value">
+                                {{ $lurah->masa_jabatan ?: '-' }}
+                            </span>
+                        </div>
 
                     </div>
 
-                @endif
-
-            </div>
-
-            <div class="kepala-info">
-
-                <span class="badge-pimpinan">
-                    Pimpinan Wilayah
-                </span>
-
-                <h2>
-
-                    @if($perangkat->count())
-
-                        {{ $perangkat->first()->nama }}
-
-                    @else
-
-                        Data Belum Tersedia
-
-                    @endif
-
-                </h2>
-
-                <h4>
-
-                    @if($perangkat->count())
-
-                        {{ $perangkat->first()->jabatan }}
-
-                    @else
-
-                        Lurah
-
-                    @endif
-
-                </h4>
-
-                <div class="garis"></div>
-
-                <p>
-
-                    Halaman ini memuat informasi perangkat
-                    dan struktur organisasi
-                    {{ $profil->nama_kelurahan ?? 'Kelurahan Lubuk Lintang' }}
-                    sebagai bagian dari pelayanan publik
-                    kepada masyarakat.
-
-                </p>
+                </div>
 
             </div>
 
@@ -115,66 +183,146 @@
 
 </section>
 
-<!-- STRUKTUR ORGANISASI -->
+@endif
+
+{{-- ============================
+     STRUKTUR ORGANISASI
+============================= --}}
 
 <section class="struktur-organisasi">
 
-    <div class="container">
+<div class="container">
 
-        <div class="section-title">
+<div class="diagram">
 
-            <h2>
-                Bagan Struktur Organisasi
-            </h2>
+    {{-- LURAH --}}
 
-            <p>
-                Struktur koordinasi dan tanggung jawab
-                pemerintahan kelurahan
-            </p>
+    @if($lurah)
+
+    <div class="diagram-lurah">
+
+        <div class="box biru">
+
+            <h4>{{ strtoupper($lurah->jabatan) }}</h4>
+
+            <span>{{ $lurah->nama }}</span>
+
+            <small>NIP : {{ $lurah->nip ?: '-' }}</small>
 
         </div>
 
-        @if($perangkat->count())
+    </div>
 
-        <div class="bagan-wrapper">
+    @else
 
-            <div class="bagan-lurah">
+    <div class="diagram-lurah">
 
-                <h4>
+        <div class="box biru">
 
-                    {{ $perangkat->first()->jabatan }}
+            <h4>LURAH</h4>
 
-                </h4>
+            <span>Belum ada data</span>
 
-                <span>
+            <small>NIP : -</small>
 
-                    {{ $perangkat->first()->nama }}
+        </div>
+        
+    </div>
 
-                </span>
+    @endif
+
+
+    {{-- SEKRETARIS --}}
+
+    @if($sekretaris)
+
+    <div class="diagram-sekretaris">
+
+        <div class="box putih">
+
+            <h4>{{ strtoupper($sekretaris->jabatan) }}</h4>
+
+            <span>{{ $sekretaris->nama }}</span>
+
+        </div>
+
+    </div>
+
+    @endif
+
+
+    {{-- KASI --}}
+
+    <div class="diagram-kasi">
+
+        @foreach($kasiList as $kasi)
+
+        <div class="kasi-item">
+
+            <div class="box putih">
+
+                <h4>{{ strtoupper($kasi->jabatan) }}</h4>
+
+                <span>{{ $kasi->nama }}</span>
 
             </div>
 
-            <div class="bagan-line"></div>
+            @php
+                $staf = $stafList->where('parent_id',$kasi->id);
+            @endphp
 
-            <div class="bagan-bawah">
+            @foreach($staf as $item)
 
-                @foreach($perangkat->skip(1)->take(3) as $item)
+            <div class="box kecil">
 
-                    <div class="bagan-box">
+                {{ $item->nama }}
 
-                        <h5>
+            </div>
 
-                            {{ $item->jabatan }}
+            @endforeach
 
-                        </h5>
+        </div>
 
-                        <span>
+        @endforeach
 
-                            {{ $item->nama }}
+    </div>
 
-                        </span>
 
-                    </div>
+    {{-- RW --}}
+
+    <div class="diagram-rw">
+
+        @foreach($rwList as $rw)
+
+        <div class="rw-item">
+
+            <div class="box biru">
+
+                {{ strtoupper($rw->jabatan) }}
+
+                <br>
+
+                {{ $rw->nama }}
+
+            </div>
+
+            @php
+                $rt = $rtList->where('parent_id',$rw->id);
+            @endphp
+
+            <div class="diagram-rt">
+
+                @foreach($rt as $item)
+
+                <div class="box mini">
+
+                    {{ strtoupper($item->jabatan) }}
+
+                    <br>
+
+                    {{ $item->nama }}
+
+                </div>
 
                 @endforeach
 
@@ -182,150 +330,79 @@
 
         </div>
 
-        @else
-
-        <div class="empty-data">
-
-            <i class="bi bi-diagram-3"></i>
-
-            <h3>
-                Struktur Belum Tersedia
-            </h3>
-
-        </div>
-
-        @endif
+        @endforeach
 
     </div>
 
+</div>
+
+</div>
+
 </section>
 
-<!-- TABEL PERANGKAT -->
+{{-- ============================
+     DAFTAR PERANGKAT (SCROLL HORIZONTAL)
+============================= --}}
 
-<section class="perangkat-table-section">
+<section class="perangkat-list">
 
     <div class="container">
 
-        <div class="table-header">
-
-            <h2>
-                Daftar Perangkat Kelurahan
-            </h2>
-
-            <span>
-                Total:
-                {{ $perangkat->count() }}
-                Personel
-            </span>
-
+        <div class="perangkat-list-header">
+            <div>
+                <h2>Daftar Perangkat Kelurahan</h2>
+                <p>Aparatur yang bertugas melayani masyarakat</p>
+            </div>
         </div>
 
-        @if($perangkat->count())
+        <div class="perangkat-scroll">
 
-        <div class="table-wrapper">
+            @foreach($perangkat as $item)
 
-            <table class="perangkat-table">
+            <div class="perangkat-card">
 
-                <thead>
+                <div class="perangkat-avatar">
+                    @if($item->foto)
+                        <img
+                            src="{{ asset('uploads/perangkat/'.$item->foto) }}"
+                            alt="{{ $item->nama }}">
+                    @else
+                        <div class="avatar-kosong">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                    @endif
+                </div>
 
-                    <tr>
+                <div class="perangkat-body">
 
-                        <th width="80">
-                            No
-                        </th>
+                    <h4>{{ $item->nama }}</h4>
 
-                        <th width="120">
-                            Foto
-                        </th>
+                    <span class="jabatan-badge">
+                        {{ $item->jabatan }}
+                    </span>
 
-                        <th>
-                            Nama
-                        </th>
+                    <div class="perangkat-info">
+                        <p>
+                            <strong>NIP</strong><br>
+                            {{ $item->nip ?: '-' }}
+                        </p>
 
-                        <th>
-                            Jabatan
-                        </th>
+                        <p>
+                            <strong>Masa Jabatan</strong><br>
+                            {{ $item->masa_jabatan ?: '-' }}
+                        </p>
 
-                    </tr>
+                    </div>
 
-                </thead>
+                  
 
-                <tbody>
+                </div>
 
-                    @foreach($perangkat as $item)
+            </div>
 
-                    <tr>
-
-                        <td>
-
-                            {{ $loop->iteration }}
-
-                        </td>
-
-                        <td>
-
-                            @if($item->foto)
-
-                                <img
-                                    src="{{ asset('uploads/perangkat/'.$item->foto) }}"
-                                    alt="{{ $item->nama }}"
-                                    class="table-foto">
-
-                            @else
-
-                                <div class="table-avatar">
-
-                                    <i class="bi bi-person"></i>
-
-                                </div>
-
-                            @endif
-
-                        </td>
-
-                        <td>
-
-                            {{ $item->nama }}
-
-                        </td>
-
-                        <td>
-
-                            <span class="jabatan-badge">
-
-                                {{ $item->jabatan }}
-
-                            </span>
-
-                        </td>
-
-                    </tr>
-
-                    @endforeach
-
-                </tbody>
-
-            </table>
+            @endforeach
 
         </div>
-
-        @else
-
-        <div class="empty-data">
-
-            <i class="bi bi-people"></i>
-
-            <h3>
-                Data Perangkat Belum Tersedia
-            </h3>
-
-            <p>
-                Silakan tambahkan data perangkat melalui panel admin.
-            </p>
-
-        </div>
-
-        @endif
 
     </div>
 

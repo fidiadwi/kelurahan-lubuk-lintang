@@ -1,319 +1,478 @@
-/* ==================================
-HEADER PROFIL
-================================== */
+/* ==================================================
+   PROFIL HEADER
+================================================== */
 
-.profil-header{
-    padding:140px 0 70px;
-    background:#f8fafc;
+.profil-header {
+    margin-top: 74px;
+    padding: 56px 0 70px;
+    color: #fff;
+
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
 }
 
-.profil-header h1{
-    font-size:56px;
-    color:#0B2E63;
-    font-weight:800;
-    margin-bottom:15px;
+.profil-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: rgba(226, 232, 240, .85);
+    margin-bottom: 22px;
 }
 
-.profil-header p{
-    max-width:700px;
-    color:#64748b;
-    font-size:18px;
+.profil-breadcrumb a {
+    color: rgba(226, 232, 240, .85);
+    transition: color .2s;
 }
 
-/* ==================================
-CONTENT PROFIL
-================================== */
-
-.profil-content{
-    padding-bottom:80px;
+.profil-breadcrumb a:hover {
+    color: #fff;
 }
 
-.profil-grid{
-    display:grid;
-    grid-template-columns:2fr 1fr;
-    gap:30px;
+.profil-breadcrumb i {
+    font-size: 11px;
+    color: rgba(226, 232, 240, .6);
 }
 
-/* ==================================
-SEJARAH
-================================== */
-
-.sejarah-card{
-    background:white;
-    border-radius:24px;
-    padding:35px;
-    box-shadow:0 10px 30px rgba(0,0,0,.05);
+.profil-breadcrumb span {
+    color: #fff;
+    font-weight: 600;
 }
 
-.sejarah-card h2{
-    color:#0B2E63;
-    margin-bottom:20px;
-    font-size:28px;
+.profil-header h1 {
+    font-size: 46px;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -.5px;
+    margin-bottom: 16px;
+    color: #fff;
 }
 
-.sejarah-card p{
-    color:#475569;
-    line-height:1.9;
+.profil-highlight {
+    color: #60a5fa;
 }
 
-.sejarah-card img{
-    width:100%;
-    height:380px;
-    object-fit:cover;
-    border-radius:18px;
-    margin-top:25px;
+.profil-header p {
+    font-size: 16px;
+    color: rgba(226, 232, 240, .9);
+    max-width: 560px;
+    line-height: 1.7;
 }
 
-/* ==================================
-VISI MISI
-================================== */
+/* ==================================================
+   PROFIL CONTENT — SEJARAH + VISI MISI
+================================================== */
 
-.visi-misi{
-    display:flex;
-    flex-direction:column;
-    gap:25px;
+.profil-content {
+    background: #f8fafc;
+    padding: 56px 0;
 }
 
-.visi-card,
-.misi-card{
-    background:white;
-    border-radius:24px;
-    padding:30px;
-    box-shadow:0 10px 30px rgba(0,0,0,.05);
+.profil-grid {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 24px;
+    align-items: start;
 }
 
-.visi-card{
-    background:#0B2E63;
-    color:white;
+.profil-card-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
 }
 
-.visi-card h3,
-.misi-card h3{
-    margin-bottom:15px;
-    font-size:24px;
+.profil-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    flex-shrink: 0;
 }
 
-.misi-card h3{
-    color:#0B2E63;
+/* Sejarah card */
+.sejarah-card {
+    background: #fff;
+    border: 1px solid #e8eef7;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .04);
 }
 
-.visi-card p{
-    color:#e2e8f0;
-    line-height:1.8;
+.sejarah-card h2 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0f172a;
 }
 
-.misi-card p{
-    color:#475569;
-    line-height:1.8;
+.sejarah-body {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
 }
 
-/* ==================================
-INFO KELURAHAN
-================================== */
-
-.profil-info{
-    padding-bottom:90px;
+.sejarah-text {
+    flex: 1.4;
+    display: flex;
+    flex-direction: column;
 }
 
-.info-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
+.sejarah-text p {
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.85;
+    margin-bottom: 18px;
+    white-space: pre-line;
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.9;
 }
 
-.info-card{
-    background:white;
-    border-radius:20px;
-    padding:30px;
-    text-align:center;
-    box-shadow:0 10px 25px rgba(0,0,0,.05);
+.sejarah-photo {
+    flex: 1;
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 260px;
+    max-width: 220px;
 }
 
-.info-card i{
-    font-size:35px;
-    color:#0B2E63;
-    margin-bottom:15px;
+.sejarah-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 260px;
 }
 
-.info-card h4{
-    color:#64748b;
-    margin-bottom:10px;
-    font-size:14px;
+/* Visi Misi column */
+.visi-misi {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.info-card h3{
-    color:#0B2E63;
-    font-size:20px;
-    word-break:break-word;
+.visi-card {
+    background: linear-gradient(135deg, #0B2E63, #0a2452);
+    border-radius: 20px;
+    padding: 28px 30px;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(11, 46, 99, .25);
 }
 
-/* ==================================
-ANIMASI
-================================== */
-
-.sejarah-card,
-.visi-card,
-.misi-card,
-.info-card{
-    transition:.3s;
+.visi-card h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
 }
 
-.sejarah-card:hover,
-.visi-card:hover,
-.misi-card:hover,
-.info-card:hover{
-    transform:translateY(-5px);
+.visi-card p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(226, 232, 240, .92);
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.9;
 }
 
-/* ==================================
-RESPONSIVE
-================================== */
+.misi-card {
+    background: #fff;
+    border: 1px solid #e8eef7;
+    border-radius: 20px;
+    padding: 28px 30px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .04);
+}
 
-@media(max-width:992px){
+.misi-card h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+}
 
-    .profil-grid{
-        grid-template-columns:1fr;
+.misi-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.misi-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.misi-list li i {
+    color: #2563EB;
+    font-size: 17px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.misi-list li span {
+    font-size: 13.5px;
+    color: #475569;
+    line-height: 1.7;
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.9;
+}
+
+/* ==================================================
+   STATISTIK
+================================================== */
+
+.profil-statistik {
+    background: #f8fafc;
+    padding: 0 0 40px;
+}
+
+.stat-grid {
+    background: #fff;
+    border: 1px solid #e8eef7;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .04);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 30px 10px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 28px;
+    position: relative;
+}
+
+.stat-card:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 1px;
+    background: #f1f5f9;
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.stat-text span {
+    display: block;
+    font-size: 13.5px;
+    color: #64748b;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.stat-text h3 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.1;
+    margin-bottom: 2px;
+}
+
+.stat-text small {
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+/* ==================================================
+   BATAS & LETAK WILAYAH
+================================================== */
+
+.wilayah-section {
+    background: #f8fafc;
+    padding: 0 0 70px;
+}
+
+.wilayah-card {
+    background: #fff;
+    border: 1px solid #e8eef7;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .04);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    padding: 36px;
+    align-items: center;
+}
+
+.wilayah-left h2 {
+    font-size: 19px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.wilayah-left > p {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.75;
+    margin-bottom: 22px;
+}
+
+.batas-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.batas-list li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.batas-list li:last-child {
+    border-bottom: none;
+}
+
+.batas-list li i {
+    font-size: 15px;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.batas-list li strong {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+    min-width: 70px;
+}
+
+.batas-list li span {
+    font-size: 14px;
+    color: #64748b;
+}
+
+.wilayah-right iframe {
+    display: block;
+    width: 100%;
+}
+
+.map-placeholder {
+    height: 350px;
+    border-radius: 18px;
+    background: #eef2f7;
+    border: 1px solid #e8eef7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #94a3b8;
+}
+
+.map-placeholder i {
+    font-size: 36px;
+}
+
+.map-placeholder span {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (max-width: 992px) {
+
+    .profil-grid {
+        grid-template-columns: 1fr;
     }
 
-    .info-grid{
-        grid-template-columns:repeat(2,1fr);
+    .sejarah-body {
+        flex-direction: column;
+    }
+
+    .sejarah-photo {
+        max-width: 100%;
+        width: 100%;
+        min-height: 200px;
+    }
+
+    .sejarah-photo img {
+        min-height: 200px;
+    }
+
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 0;
+    }
+
+    .stat-card:nth-child(2)::after {
+        display: none;
+    }
+
+    .stat-card:nth-child(odd)::after {
+        display: none;
+    }
+
+    .wilayah-card {
+        grid-template-columns: 1fr;
     }
 
 }
 
-@media(max-width:768px){
+@media (max-width: 768px) {
 
-    .profil-header{
-        padding:120px 0 50px;
+    .profil-header {
+        padding: 44px 0 56px;
     }
 
-    .profil-header h1{
-        font-size:40px;
+    .profil-header h1 {
+        font-size: 32px;
     }
 
-    .info-grid{
-        grid-template-columns:1fr;
+    .stat-grid {
+        grid-template-columns: 1fr 1fr;
+        padding: 24px 16px;
+    }
+
+    .stat-card {
+        padding: 0 10px;
+    }
+
+    .stat-card::after {
+        display: none;
     }
 
     .sejarah-card,
-    .visi-card,
-    .misi-card{
-        padding:25px;
+    .misi-card,
+    .visi-card {
+        padding: 24px 22px;
     }
 
-    .sejarah-card img{
-        height:250px;
-    }
-
-}
-
-/* =========================
-STATISTIK
-========================= */
-
-.profil-statistik{
-    padding-bottom:60px;
-}
-
-.stat-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-}
-
-.stat-card{
-    background:#eef4ff;
-    border:1px solid #dbeafe;
-    border-radius:18px;
-    padding:30px;
-    text-align:center;
-}
-
-.stat-card i{
-    font-size:28px;
-    color:#0B2E63;
-    margin-bottom:10px;
-}
-
-.stat-card span{
-    display:block;
-    color:#64748b;
-    font-size:13px;
-    margin-bottom:8px;
-}
-
-.stat-card h3{
-    color:#0B2E63;
-    font-size:24px;
-}
-
-/* =========================
-BATAS WILAYAH
-========================= */
-
-.wilayah-section{
-    padding-bottom:90px;
-}
-
-.wilayah-card{
-    background:white;
-    border-radius:24px;
-    padding:30px;
-    box-shadow:0 10px 30px rgba(0,0,0,.05);
-
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:30px;
-}
-
-.wilayah-left h2{
-    color:#0B2E63;
-    margin-bottom:20px;
-}
-
-.wilayah-left p{
-    color:#475569;
-    margin-bottom:20px;
-}
-
-.wilayah-left table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-.wilayah-left table td{
-    padding:14px 0;
-    border-bottom:1px solid #e2e8f0;
-}
-
-.wilayah-left table td:first-child{
-    font-weight:700;
-    width:120px;
-}
-
-.wilayah-right iframe{
-    width:100%;
-    border-radius:18px;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:992px){
-
-    .stat-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .wilayah-card{
-        grid-template-columns:1fr;
+    .wilayah-card {
+        padding: 24px;
     }
 
 }
 
-@media(max-width:768px){
+@media (max-width: 480px) {
 
-    .stat-grid{
-        grid-template-columns:1fr;
+    .profil-header h1 {
+        font-size: 26px;
+    }
+
+    .stat-grid {
+        grid-template-columns: 1fr;
     }
 
 }

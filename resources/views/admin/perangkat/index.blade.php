@@ -72,6 +72,64 @@
 
             <div class="form-group">
 
+                <label>Level</label>
+
+                <select name="level" required>
+
+                    <option value="lurah">Lurah</option>
+                    <option value="sekretaris">Sekretaris</option>
+                    <option value="kasi">Kasi</option>
+                    <option value="staf">Staf</option>
+                    <option value="rw">RW</option>
+                    <option value="rt">RT</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Atasan (Parent)</label>
+
+                <select name="parent_id">
+
+                    <option value="">- Tidak Ada -</option>
+
+                    @foreach($perangkat as $p)
+
+                        <option value="{{ $p->id }}">
+                            {{ $p->jabatan }} - {{ $p->nama }}
+                        </option>
+
+                    @endforeach
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>NIP</label>
+
+                <input
+                    type="text"
+                    name="nip">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Masa Jabatan</label>
+
+                <input
+                    type="text"
+                    name="masa_jabatan"
+                    placeholder="Contoh : 2025 - 2030">
+
+            </div>
+
+            <div class="form-group">
+
                 <label>Urutan</label>
 
                 <input
@@ -110,14 +168,17 @@
         <thead>
 
             <tr>
-
                 <th>No</th>
                 <th>Foto</th>
                 <th>Nama</th>
                 <th>Jabatan</th>
+                <th>Level</th>
+                <th>Atasan</th>
+                <th>NIP</th>
+                <th>Masa Jabatan</th>
                 <th>Urutan</th>
                 <th>Aksi</th>
-
+            
             </tr>
 
         </thead>
@@ -149,6 +210,16 @@
                 <td>{{ $item->nama }}</td>
 
                 <td>{{ $item->jabatan }}</td>
+
+                <td>{{ strtoupper($item->level) }}</td>
+
+                <td>
+                    {{ optional($item->parent)->nama ?? '-' }}
+                </td>
+
+                <td>{{ $item->nip }}</td>
+
+                <td>{{ $item->masa_jabatan }}</td>
 
                 <td>{{ $item->urutan }}</td>
 
@@ -190,7 +261,7 @@
                 id="edit-{{ $item->id }}"
                 style="display:none;">
 
-                <td colspan="6">
+                <td colspan="10">
 
                     <div class="edit-box">
 
@@ -225,6 +296,80 @@
                                         name="jabatan"
                                         value="{{ $item->jabatan }}"
                                         required>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Level</label>
+
+                                    <select name="level">
+
+                                        @foreach(['lurah','sekretaris','kasi','staf','rw','rt'] as $lvl)
+
+                                            <option
+                                                value="{{ $lvl }}"
+                                                @selected($item->level==$lvl)>
+
+                                                {{ strtoupper($lvl) }}
+
+                                            </option>
+
+                                        @endforeach
+
+                                     </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Atasan</label>
+
+                                    <select name="parent_id">
+
+                                        <option value="">- Tidak Ada -</option>
+
+                                        @foreach($perangkat as $p)
+
+                                            @if($p->id != $item->id)
+
+                                            <option
+                                                value="{{ $p->id }}"
+                                                @selected($item->parent_id==$p->id)>
+
+                                                {{ $p->jabatan }} - {{ $p->nama }}
+
+                                            </option>
+
+                                            @endif
+
+                                        @endforeach
+
+                                    </select>
+
+                                </div>
+                            
+
+                                <div class="form-group">
+
+                                    <label>NIP</label>
+
+                                    <input
+                                        type="text"
+                                        name="nip">
+                                        value="{{ $item->nip }}">
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Masa Jabatan</label>
+
+                                    <input
+                                        type="text"
+                                        name="masa_jabatan"
+                                        placeholder="Contoh: 2024 - 2029">
+                                        value="{{ $item->masa_jabatan }}">
 
                                 </div>
 
@@ -273,7 +418,7 @@
 
             <tr>
 
-                <td colspan="6" class="empty-row">
+                <td colspan="8" class="empty-row">
 
                     Belum ada data perangkat
 

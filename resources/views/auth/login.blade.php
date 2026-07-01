@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Login Admin</title>
+    <title>Login Admin | Kelurahan Lubuk Lintang</title>
 
     <link rel="stylesheet"
           href="{{ asset('css/login.css') }}">
@@ -21,112 +21,209 @@
 <body>
 
 <div class="login-wrapper">
-    <div class="back-home">
 
-        <a href="{{ route('home') }}">
+    <!-- Background Circles -->
+    <div class="bg-circle circle-1"></div>
+    <div class="bg-circle circle-2"></div>
 
-            <i class="bi bi-arrow-left"></i>
+    <!-- Tombol Kembali -->
+    <a href="{{ route('home') }}" class="back-home">
+        <i class="bi bi-arrow-left"></i>
+        <span>Kembali ke Website</span>
+    </a>
 
-            Kembali ke Website
+    <div class="login-container">
 
-        </a>
+        <!-- ==============================
+             LEFT PANEL
+        =============================== -->
+        <section class="left-panel">
 
-    </div>
+            <img
+                src="{{ asset('images/kantor-kelurahan.jpg') }}"
+                class="left-bg"
+                alt="Kantor Kelurahan">
 
-    <div class="login-card">
+            <div class="left-overlay"></div>
 
-        <div class="login-header">
+            <!-- Wave decorative bottom -->
+            <div class="left-wave"></div>
 
-            <div class="icon-box">
-                <i class="bi bi-bank"></i>
-            </div>
+            <div class="left-content">
 
-            <h2>Admin Kelurahan</h2>
+                <span class="subtitle">
+                    <i class="bi bi-bank2"></i>
+                    WEBSITE RESMI
+                </span>
 
-            <p>
-                Sistem Informasi Kelurahan
-                Lubuk Lintang
-            </p>
+                <h1>
+                    Kelurahan<br>
+                    Lubuk Lintang
+                </h1>
 
-        </div>
-
-        @if(session('error'))
-
-        <div class="alert-error">
-            {{ session('error') }}
-        </div>
-
-        @endif
-
-        <form
-            action="{{ route('login.process') }}"
-            method="POST">
-
-            @csrf
-
-            <div class="form-group">
-
-                <label>Email</label>
-
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Masukkan email admin"
-                    required>
+                <p>
+                    Portal pelayanan publik berbasis digital
+                    yang memberikan akses informasi,
+                    pelayanan administrasi, transparansi,
+                    serta komunikasi masyarakat secara
+                    cepat, aman dan profesional.
+                </p>
 
             </div>
 
-            <div class="form-group">
+            <div class="left-feature">
 
-                <label>Password</label>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <div>
+                        <h4>Pelayanan</h4>
+                        <span>Profesional</span>
+                    </div>
+                </div>
 
-                <div class="password-box">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <div>
+                        <h4>Transparan</h4>
+                        <span>Akuntabel</span>
+                    </div>
+                </div>
 
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        placeholder="Masukkan password"
-                        required>
-
-                    <button
-                        type="button"
-                        onclick="togglePassword()">
-
-                        <i
-                            id="eyeIcon"
-                            class="bi bi-eye">
-                        </i>
-
-                    </button>
-
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="bi bi-heart-fill"></i>
+                    </div>
+                    <div>
+                        <h4>Melayani</h4>
+                        <span>Sepenuh Hati</span>
+                    </div>
                 </div>
 
             </div>
 
-            <button
-                type="submit"
-                class="btn-login">
+            <!-- Bottom security badge -->
+            <div class="left-security">
+                <i class="bi bi-shield-lock-fill"></i>
+                <span>Sistem aman dan terpercaya untuk melindungi data Anda</span>
+            </div>
 
-                Login Admin
+            <!-- Decorative dots -->
+            <div class="dots-pattern"></div>
 
-            </button>
+        </section>
 
-        </form>
+        <!-- ==============================
+             RIGHT PANEL
+        =============================== -->
+        <section class="right-panel">
 
-        <div class="login-footer">
+            <div class="login-card">
 
-            <p>
-                © 2026 Kelurahan Lubuk Lintang
-            </p>
+                <div class="card-header">
 
-            <small>
-                Dikembangkan oleh
-                Fidia Dewi Wulandari Batu Bara
-                • KKN Universitas Bengkulu 2026
-            </small>
+                    <div class="logo-box">
+                        <img
+                            src="{{ asset('images/logo.png') }}"
+                            alt="Logo Kelurahan Lubuk Lintang">
+                    </div>
 
-        </div>
+                    <h2>Admin Kelurahan</h2>
+
+                    <p>
+                        Silakan masuk menggunakan akun
+                        administrator untuk mengelola
+                        Website Kelurahan Lubuk Lintang.
+                    </p>
+
+                </div>
+
+                @if(session('error'))
+                <div class="alert-error">
+                    <i class="bi bi-exclamation-circle-fill"></i>
+                    {{ session('error') }}
+                </div>
+                @endif
+
+                <form
+                    action="{{ route('login.process') }}"
+                    method="POST">
+
+                    @csrf
+
+                    <div class="form-group">
+
+                        <label for="email">Email</label>
+
+                        <div class="input-group">
+                            <i class="bi bi-envelope" aria-hidden="true"></i>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value="{{ old('email') }}"
+                                placeholder="admin@gmail.com"
+                                required>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="password">Password</label>
+
+                        <div class="input-group password-group">
+                            <i class="bi bi-lock" aria-hidden="true"></i>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Masukkan password"
+                                required>
+                            <button
+                                type="button"
+                                class="toggle-password"
+                                onclick="togglePassword()"
+                                aria-label="Tampilkan password">
+                                <i id="eyeIcon" class="bi bi-eye"></i>
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn-login">
+                        <i class="bi bi-lock-fill"></i>
+                        Login Admin
+                    </button>
+
+                </form>
+
+                <div class="login-divider">
+                    <span class="line"></span>
+                    <span class="text">atau</span>
+                    <span class="line"></span>
+                </div>
+
+                <div class="login-info">
+
+                    <div class="info-row">
+                        <i class="bi bi-patch-check-fill"></i>
+                        <span>Sistem hanya dapat diakses oleh Administrator Kelurahan.</span>
+                    </div>
+
+                </div>
+
+                <div class="login-footer">
+                    <p>© 2026 Kelurahan Lubuk Lintang</p>
+                    <small>Website Resmi Pemerintah Kelurahan Lubuk Lintang</small>
+                </div>
+
+            </div>
+
+        </section>
 
     </div>
 
@@ -134,32 +231,28 @@
 
 <script>
 
-function togglePassword()
-{
-    let password =
-        document.getElementById('password');
-
-    let icon =
-        document.getElementById('eyeIcon');
-
-    if(password.type === 'password')
-    {
+function togglePassword() {
+    const password = document.getElementById('password');
+    const eye = document.getElementById('eyeIcon');
+    if (password.type === 'password') {
         password.type = 'text';
-
-        icon.classList.remove('bi-eye');
-        icon.classList.add('bi-eye-slash');
-    }
-    else
-    {
+        eye.classList.replace('bi-eye', 'bi-eye-slash');
+    } else {
         password.type = 'password';
-
-        icon.classList.remove('bi-eye-slash');
-        icon.classList.add('bi-eye');
+        eye.classList.replace('bi-eye-slash', 'bi-eye');
     }
 }
+
+document.querySelectorAll('.input-group input').forEach(input => {
+    input.addEventListener('focus', function () {
+        this.closest('.input-group').classList.add('active');
+    });
+    input.addEventListener('blur', function () {
+        this.closest('.input-group').classList.remove('active');
+    });
+});
 
 </script>
 
 </body>
-
 </html>

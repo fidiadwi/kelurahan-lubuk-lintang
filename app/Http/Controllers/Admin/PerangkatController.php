@@ -10,8 +10,9 @@ class PerangkatController extends Controller
 {
     public function index()
     {
-        $perangkat = PerangkatKelurahan::orderBy('urutan')
-            ->get();
+        $perangkat = PerangkatKelurahan::orderBy('urutan')->get();
+
+        $parentList = PerangkatKelurahan::orderBy('urutan')->get();
 
         $totalPerangkat = PerangkatKelurahan::count();
 
@@ -19,6 +20,7 @@ class PerangkatController extends Controller
             'admin.perangkat.index',
             compact(
                 'perangkat',
+                'parentList',
                 'totalPerangkat'
             )
         );
@@ -32,17 +34,25 @@ class PerangkatController extends Controller
 
             'jabatan' => 'required',
 
+            'level' => 'required',
+
+            'parent_id' => 'nullable',
+
+            'nip' => 'nullable',
+
+            'masa_jabatan' => 'nullable',
+
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
 
         ]);
 
         $foto = null;
 
-        if($request->hasFile('foto'))
-        {
+        if ($request->hasFile('foto')) {
+
             $file = $request->file('foto');
 
-            $foto = time().'_'.$file->getClientOriginalName();
+            $foto = time() . '_' . $file->getClientOriginalName();
 
             $file->move(
                 public_path('uploads/perangkat'),
@@ -56,6 +66,14 @@ class PerangkatController extends Controller
 
             'jabatan' => $request->jabatan,
 
+            'level' => $request->level,
+
+            'parent_id' => $request->parent_id ?: null,
+
+            'nip' => $request->nip,
+
+            'masa_jabatan' => $request->masa_jabatan,
+
             'foto' => $foto,
 
             'urutan' => $request->urutan ?? 0
@@ -64,7 +82,7 @@ class PerangkatController extends Controller
 
         return back()->with(
             'success',
-            'Data perangkat berhasil ditambahkan'
+            'Data perangkat berhasil ditambahkan.'
         );
     }
 
@@ -74,7 +92,15 @@ class PerangkatController extends Controller
 
             'nama' => 'required',
 
-            'jabatan' => 'required'
+            'jabatan' => 'required',
+
+            'level' => 'required',
+
+            'parent_id' => 'nullable',
+
+            'nip' => 'nullable',
+
+            'masa_jabatan' => 'nullable'
 
         ]);
 
@@ -82,11 +108,11 @@ class PerangkatController extends Controller
 
         $foto = $perangkat->foto;
 
-        if($request->hasFile('foto'))
-        {
+        if ($request->hasFile('foto')) {
+
             $file = $request->file('foto');
 
-            $foto = time().'_'.$file->getClientOriginalName();
+            $foto = time() . '_' . $file->getClientOriginalName();
 
             $file->move(
                 public_path('uploads/perangkat'),
@@ -100,6 +126,14 @@ class PerangkatController extends Controller
 
             'jabatan' => $request->jabatan,
 
+            'level' => $request->level,
+
+            'parent_id' => $request->parent_id ?: null,
+
+            'nip' => $request->nip,
+
+            'masa_jabatan' => $request->masa_jabatan,
+
             'urutan' => $request->urutan,
 
             'foto' => $foto
@@ -108,7 +142,7 @@ class PerangkatController extends Controller
 
         return back()->with(
             'success',
-            'Data perangkat berhasil diperbarui'
+            'Data perangkat berhasil diperbarui.'
         );
     }
 
@@ -120,7 +154,7 @@ class PerangkatController extends Controller
 
         return back()->with(
             'success',
-            'Data perangkat berhasil dihapus'
+            'Data perangkat berhasil dihapus.'
         );
     }
 }

@@ -218,6 +218,298 @@
 
     </div>
 
+    {{-- BANNER WEBSITE --}}
+    <div class="profil-section">
+
+        <div class="section-header">
+
+            <i class="bi bi-images"></i>
+
+            <div>
+
+                <h3>Banner Website</h3>
+
+                <p>
+                    Banner untuk masing-masing halaman website.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="form-grid">
+
+            {{-- Banner Beranda --}}
+            <div class="form-group">
+
+                <label>Banner Beranda</label>
+
+                @if(!empty($profil->banner_beranda))
+                    <img
+                        src="{{ asset('uploads/profil/'.$profil->banner_beranda) }}"
+                        class="preview-image">
+                @endif
+
+                <input
+                    type="file"
+                    name="banner_beranda">
+
+            </div>
+
+            {{-- Banner Profil --}}
+            <div class="form-group">
+
+                <label>Banner Profil</label>
+
+                @if(!empty($profil->banner_profil))
+                    <img
+                        src="{{ asset('uploads/profil/'.$profil->banner_profil) }}"
+                        class="preview-image">
+                @endif
+
+                <input
+                    type="file"
+                    name="banner_profil">
+
+            </div>
+
+            {{-- Banner Pemerintah --}}
+            <div class="form-group">
+
+                <label>Banner Pemerintah</label>
+
+                @if(!empty($profil->banner_perangkat))
+                    <img
+                        src="{{ asset('uploads/profil/'.$profil->banner_perangkat) }}"
+                        class="preview-image">
+                @endif
+
+                <input
+                    type="file"
+                    name="banner_perangkat">
+
+            </div>
+
+            {{-- Banner Dokumentasi --}}
+            <div class="form-group">
+
+                <label>Banner Dokumentasi</label>
+
+                @if(!empty($profil->banner_dokumentasi))
+                    <img
+                        src="{{ asset('uploads/profil/'.$profil->banner_dokumentasi) }}"
+                        class="preview-image">
+                @endif
+
+                <input
+                    type="file"
+                    name="banner_dokumentasi">
+
+            </div>
+
+            {{-- Banner Kontak --}}
+            <div class="form-group">
+
+                <label>Banner Kontak</label>
+
+                @if(!empty($profil->banner_kontak))
+                    <img
+                        src="{{ asset('uploads/profil/'.$profil->banner_kontak) }}"
+                        class="preview-image">
+                @endif
+
+                <input
+                    type="file"
+                    name="banner_kontak">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{-- DATA STATISTIK --}}
+
+    <div class="profil-section">
+    <div class="section-header">
+
+        <i class="bi bi-bar-chart"></i>
+
+        <div>
+
+            <h3>Data Statistik Kelurahan</h3>
+
+            <p>
+                Data statistik yang akan ditampilkan pada halaman profil.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+
+            <label>Luas Wilayah</label>
+
+            <input
+                type="text"
+                name="luas_wilayah"
+                value="{{ old('luas_wilayah',$profil->luas_wilayah ?? '') }}"
+                placeholder="Contoh: 12 Km²">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Jumlah Penduduk</label>
+
+            <input
+                type="text"
+                name="jumlah_penduduk"
+                value="{{ old('jumlah_penduduk',$profil->jumlah_penduduk ?? '') }}"
+                placeholder="Contoh: 4.200 Jiwa">
+
+        </div>
+
+    </div>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+
+            <label>Jumlah RT / RW</label>
+
+            <input
+                type="text"
+                name="jumlah_rt_rw"
+                value="{{ old('jumlah_rt_rw',$profil->jumlah_rt_rw ?? '') }}"
+                placeholder="Contoh: 8 RT / 2 RW">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Jumlah KK</label>
+
+            <input
+                type="text"
+                name="jumlah_kk"
+                value="{{ old('jumlah_kk',$profil->jumlah_kk ?? '') }}"
+                placeholder="Contoh: 1.350 KK">
+
+        </div>
+
+    </div>
+
+    </div>
+
+    {{-- BATAS WILAYAH --}}
+
+    <div class="profil-section">
+    <div class="section-header">
+
+        <i class="bi bi-map"></i>
+
+        <div>
+
+            <h3>Batas Wilayah</h3>
+
+            <p>
+                Informasi batas wilayah administrasi kelurahan.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+
+            <label>Batas Utara</label>
+
+            <input
+                type="text"
+                name="batas_utara"
+                value="{{ old('batas_utara',$profil->batas_utara ?? '') }}">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Batas Selatan</label>
+
+            <input
+                type="text"
+                name="batas_selatan"
+                value="{{ old('batas_selatan',$profil->batas_selatan ?? '') }}">
+
+        </div>
+
+    </div>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+
+            <label>Batas Timur</label>
+
+            <input
+                type="text"
+                name="batas_timur"
+                value="{{ old('batas_timur',$profil->batas_timur ?? '') }}">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Batas Barat</label>
+
+            <input
+                type="text"
+                name="batas_barat"
+                value="{{ old('batas_barat',$profil->batas_barat ?? '') }}">
+
+        </div>
+
+    </div>
+    </div>
+
+    {{-- GOOGLE MAPS --}}
+
+    <div class="profil-section">
+    <div class="section-header">
+
+        <i class="bi bi-geo-alt"></i>
+
+        <div>
+
+            <h3>Google Maps</h3>
+
+            <p>
+                Tempel link embed Google Maps lokasi kantor kelurahan.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>Link Maps Embed</label>
+
+        <textarea
+            name="maps_embed"
+            rows="5"
+            placeholder="https://www.google.com/maps/embed?...">{{ old('maps_embed',$profil->maps_embed ?? '') }}</textarea>
+
+    </div>
+
+    </div>
+
+
     <button
         type="submit"
         class="btn-save">
